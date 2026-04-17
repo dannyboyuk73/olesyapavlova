@@ -85,7 +85,7 @@
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--white);
       margin-bottom: 18px;
     }
 
@@ -99,7 +99,7 @@
 
     .hero-name em {
       font-style: italic;
-      color: var(--gold-lt);
+      color: var(--white);
     }
 
     .hero-right {
@@ -242,6 +242,67 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--mist);
+    }
+
+    /* ── PRESS ── */
+    .press { background: var(--deep); }
+    .press .section-heading { color: var(--cream); }
+    .press .section-label { color: var(--gold); }
+
+    .press-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: end;
+      border-left: 3px solid var(--gold);
+      padding: 36px 40px;
+      background: rgba(255,255,255,0.04);
+      max-width: 860px;
+    }
+
+    .press-publication {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .press-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 2.2vw, 26px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .press-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: #a0b0ae;
+      line-height: 1.75;
+    }
+
+    .press-link {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(184,151,90,0.3);
+      padding-bottom: 3px;
+      white-space: nowrap;
+      transition: border-color 0.2s;
+    }
+    .press-link:hover { border-color: var(--gold); }
+
+    @media (max-width: 700px) {
+      .press-card { grid-template-columns: 1fr; }
     }
 
     /* ── EXPERTISE ── */
@@ -618,6 +679,22 @@
 
   <div class="gold-line"></div>
 
+  <!-- PRESS -->
+  <section class="press" id="press">
+    <div class="section-inner">
+      <p class="section-label">In the press</p>
+      <h2 class="section-heading">Featured by the<br/>British Dental Association</h2>
+      <div class="press-card">
+        <div>
+          <p class="press-publication">BDA Blog</p>
+          <p class="press-quote">"Building a dental career across Russia, Switzerland and the UK"</p>
+          <p class="press-desc">Olesya shares her journey — qualifying in St. Petersburg, practising in Geneva, and building a career in the UK — offering insight and guidance for internationally trained dentists navigating the path to UK practice.</p>
+        </div>
+        <a href="https://www.bda.org/news-and-opinion/blog/building-a-dental-career-across-russia-switzerland-and-the-uk/" target="_blank" rel="noopener" class="press-link">Read the article &rarr;</a>
+      </div>
+    </div>
+  </section>
+
   <!-- EXPERTISE -->
   <section class="expertise" id="expertise">
     <div class="section-inner">
@@ -666,38 +743,11 @@
       <div class="timeline">
 
         <div class="timeline-item">
-          <div class="tl-date">2025 – Present</div>
+          <div class="tl-date">2016 – Present</div>
           <div>
             <div class="tl-role">General Dentist</div>
-            <div class="tl-place">Englands House Dental Practice, Great Bookham, Surrey</div>
-            <div class="tl-desc">Providing maternity cover in a fully private practice. Delivering comprehensive restorative, periodontal, and endodontic treatments with an emphasis on personalised care and advanced technology.</div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="tl-date">2023 – Present</div>
-          <div>
-            <div class="tl-role">General Dentist</div>
-            <div class="tl-place">Weybridge Dental Practice, Weybridge, Surrey</div>
-            <div class="tl-desc">Mainly private practice with a small NHS contract. Delivering comprehensive general and cosmetic dentistry, utilising scanners, digital X-rays, and intraoral cameras to enhance treatment accuracy and patient outcomes.</div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="tl-date">2020 – 2022</div>
-          <div>
-            <div class="tl-role">General Dentist</div>
-            <div class="tl-place">Harland &amp; Dear Dental Surgery, Epsom, Surrey</div>
-            <div class="tl-desc">Full range of preventative, restorative, and endodontic treatments in a busy mixed practice. Managed ortho referrals and multidisciplinary cases.</div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="tl-date">2016 – 2019</div>
-          <div>
-            <div class="tl-role">General Dentist</div>
-            <div class="tl-place">Arch Dental Surgery, Ashtead, Surrey</div>
-            <div class="tl-desc">Predominantly NHS-focused practice. Developed expertise in treatment planning and patient management across a broad range of restorative procedures.</div>
+            <div class="tl-place">Various private &amp; mixed practices, Surrey</div>
+            <div class="tl-desc">Working across a number of practices in Surrey — including Weybridge Dental Practice and Englands House Dental Practice — providing general, restorative, and cosmetic dentistry in both fully private and mixed NHS/private settings.</div>
           </div>
         </div>
 
@@ -706,16 +756,25 @@
           <div>
             <div class="tl-role">General Dentist</div>
             <div class="tl-place">KBT Dental Surgery, Kirkcudbright, Scotland</div>
-            <div class="tl-desc">First NHS dentist position; gained extensive hands-on experience in preventative and restorative treatments.</div>
+            <div class="tl-desc">NHS dental practice in Scotland; broad hands-on experience across preventative and restorative treatments for a diverse patient base.</div>
           </div>
         </div>
 
         <div class="timeline-item">
-          <div class="tl-date">Before 2015</div>
+          <div class="tl-date">2010 – 2015</div>
           <div>
-            <div class="tl-role">Varied Clinical Roles</div>
-            <div class="tl-place">Various practices</div>
-            <div class="tl-desc">Roles spanning restorative dentist, dental hygienist and therapist, dental nurse, and lecturer for National Certificate — providing a uniquely broad foundation across all aspects of dental practice.</div>
+            <div class="tl-role">Dentist</div>
+            <div class="tl-place">Geneva, Switzerland</div>
+            <div class="tl-desc">Practising in private dental settings in Geneva, developing clinical skills in a high-standard international environment.</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="tl-date">2005 – 2010</div>
+          <div>
+            <div class="tl-role">Dental Nurse, Hygienist &amp; Dental Therapist</div>
+            <div class="tl-place">Harley Street, London</div>
+            <div class="tl-desc">Built a broad clinical foundation across dental nursing, hygiene, and therapy roles at Harley Street — gaining invaluable experience in UK dental practice, patient communication, and clinical teamwork while preparing for UK registration.</div>
           </div>
         </div>
 
