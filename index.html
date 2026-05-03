@@ -30,6 +30,89 @@
       line-height: 1.7;
     }
 
+    /* ── SCROLL ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+    .fade-up:nth-child(5) { transition-delay: 0.4s; }
+    .fade-up:nth-child(6) { transition-delay: 0.5s; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 40px;
+      background: rgba(27, 36, 34, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--white);
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .nav-brand span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* Hamburger */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      width: 32px;
+      height: 32px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--stone);
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
@@ -45,25 +128,9 @@
       align-items: flex-end;
       padding: 80px 60px;
       position: relative;
+      overflow: hidden;
     }
 
-    /* Photo placeholder – swap <div class="photo-placeholder"> for <img> later */
-    .photo-placeholder {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      opacity: 0.18;
-    }
-    .photo-placeholder svg { width: 80px; height: 80px; fill: var(--stone); }
-    .photo-placeholder span { color: var(--stone); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; }
-
-    /* When you add the real photo, replace .photo-placeholder with:
-       <img src="olesya.jpg" alt="Dr Olesya Pavlova" class="hero-photo" />
-    */
     .hero-photo {
       position: absolute;
       inset: 0;
@@ -71,7 +138,21 @@
       height: 100%;
       object-fit: cover;
       object-position: top center;
-      opacity: 0.85;
+      opacity: 1;
+    }
+
+    /* Gradient overlay for text legibility — preserves photo at full strength */
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        170deg,
+        rgba(27, 46, 44, 0.18) 0%,
+        rgba(27, 46, 44, 0.05) 45%,
+        rgba(27, 46, 44, 0.80) 100%
+      );
+      z-index: 1;
     }
 
     .hero-name-block {
@@ -85,16 +166,16 @@
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--white);
+      color: var(--gold-lt);
       margin-bottom: 18px;
     }
 
     .hero-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(48px, 6vw, 80px);
+      font-size: clamp(52px, 6.5vw, 88px);
       font-weight: 300;
       color: var(--white);
-      line-height: 1.05;
+      line-height: 1.0;
     }
 
     .hero-name em {
@@ -107,16 +188,16 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 80px 70px;
+      padding: 100px 70px 80px;
     }
 
     .hero-tagline {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(22px, 2.8vw, 34px);
+      font-size: clamp(24px, 2.8vw, 36px);
       font-weight: 300;
       color: var(--deep);
-      line-height: 1.35;
-      margin-bottom: 36px;
+      line-height: 1.3;
+      margin-bottom: 32px;
     }
 
     .hero-tagline em {
@@ -128,23 +209,23 @@
       font-size: 15px;
       font-weight: 300;
       color: #4a5755;
-      line-height: 1.8;
+      line-height: 1.85;
       max-width: 420px;
       margin-bottom: 48px;
     }
 
     .cta-bar {
       display: flex;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
     }
 
     .btn {
       display: inline-block;
       padding: 14px 32px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       text-decoration: none;
       border-radius: 2px;
@@ -161,9 +242,9 @@
       border: 1px solid var(--stone);
       color: var(--deep);
     }
-    .btn-ghost:hover { border-color: var(--deep); background: var(--warm); }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); background: transparent; }
 
-    /* ── DIVIDER ── */
+    /* ── GOLD DIVIDER ── */
     .gold-line {
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--gold), transparent);
@@ -186,16 +267,17 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
+      display: block;
     }
 
     .section-heading {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(32px, 4vw, 52px);
+      font-size: clamp(34px, 4vw, 54px);
       font-weight: 300;
       color: var(--deep);
-      line-height: 1.15;
-      margin-bottom: 48px;
+      line-height: 1.1;
+      margin-bottom: 52px;
     }
 
     /* ── ABOUT ── */
@@ -204,7 +286,7 @@
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      gap: 64px;
       align-items: start;
     }
 
@@ -212,9 +294,10 @@
       font-size: 15px;
       font-weight: 300;
       color: #4a5755;
-      line-height: 1.85;
-      margin-bottom: 20px;
+      line-height: 1.9;
+      margin-bottom: 22px;
     }
+    .about-body p:last-child { margin-bottom: 0; }
 
     .about-stats {
       display: grid;
@@ -224,41 +307,45 @@
 
     .stat-card {
       background: var(--warm);
-      padding: 32px 28px;
+      padding: 34px 28px;
+      transition: background 0.2s;
     }
+    .stat-card:hover { background: var(--cream); }
 
     .stat-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 52px;
+      font-size: 48px;
       font-weight: 300;
       color: var(--deep);
       line-height: 1;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .stat-label {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--mist);
+      line-height: 1.5;
     }
 
     /* ── PRESS ── */
     .press { background: var(--deep); }
     .press .section-heading { color: var(--cream); }
-    .press .section-label { color: var(--gold); }
 
     .press-card {
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 40px;
+      gap: 48px;
       align-items: end;
-      border-left: 3px solid var(--gold);
-      padding: 36px 40px;
+      border-left: 2px solid var(--gold);
+      padding: 40px 44px;
       background: rgba(255,255,255,0.04);
-      max-width: 860px;
+      max-width: 880px;
+      transition: background 0.25s;
     }
+    .press-card:hover { background: rgba(255,255,255,0.06); }
 
     .press-publication {
       font-size: 11px;
@@ -266,16 +353,16 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     .press-quote {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(18px, 2.2vw, 26px);
+      font-size: clamp(19px, 2.2vw, 27px);
       font-weight: 300;
       font-style: italic;
       color: var(--cream);
-      line-height: 1.5;
+      line-height: 1.45;
       margin-bottom: 20px;
     }
 
@@ -283,72 +370,70 @@
       font-size: 14px;
       font-weight: 300;
       color: #a0b0ae;
-      line-height: 1.75;
+      line-height: 1.8;
     }
 
     .press-link {
-      display: inline-block;
-      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--gold);
       text-decoration: none;
-      border-bottom: 1px solid rgba(184,151,90,0.3);
-      padding-bottom: 3px;
       white-space: nowrap;
-      transition: border-color 0.2s;
+      padding-bottom: 2px;
+      border-bottom: 1px solid rgba(184,151,90,0.3);
+      transition: border-color 0.2s, color 0.2s;
     }
-    .press-link:hover { border-color: var(--gold); }
-
-    @media (max-width: 700px) {
-      .press-card { grid-template-columns: 1fr; }
-    }
+    .press-link:hover { border-color: var(--gold); color: var(--gold-lt); }
 
     /* ── EXPERTISE ── */
     .expertise { background: var(--cream); }
 
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 2px;
     }
 
     .skill-card {
       background: var(--white);
-      padding: 36px 32px;
-      position: relative;
-      transition: transform 0.2s ease;
+      padding: 38px 34px;
+      transition: transform 0.25s ease, background 0.2s;
     }
-    .skill-card:hover { transform: translateY(-3px); }
+    .skill-card:hover { transform: translateY(-4px); background: #fdfcfa; }
 
     .skill-icon {
       width: 36px;
-      height: 2px;
-      background: var(--gold);
-      margin-bottom: 24px;
+      height: 36px;
+      color: var(--gold);
+      margin-bottom: 22px;
+      opacity: 0.9;
     }
+    .skill-icon svg { width: 100%; height: 100%; }
 
     .skill-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 20px;
+      font-size: 21px;
       font-weight: 400;
       color: var(--deep);
       margin-bottom: 10px;
+      line-height: 1.2;
     }
 
     .skill-desc {
       font-size: 13.5px;
       font-weight: 300;
       color: #6a7d7a;
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
     /* ── CAREER TIMELINE ── */
     .career { background: var(--deep); }
-
     .career .section-heading { color: var(--cream); }
-    .career .section-label { color: var(--gold); }
 
     .timeline {
       position: relative;
@@ -359,62 +444,66 @@
       content: '';
       position: absolute;
       left: 0;
-      top: 0;
+      top: 8px;
       bottom: 0;
       width: 1px;
-      background: linear-gradient(180deg, var(--gold), transparent);
+      background: linear-gradient(180deg, var(--gold) 0%, rgba(184,151,90,0.1) 100%);
     }
 
     .timeline-item {
       display: grid;
       grid-template-columns: 160px 1fr;
       gap: 40px;
-      margin-bottom: 48px;
+      margin-bottom: 52px;
       padding-left: 36px;
       position: relative;
     }
+    .timeline-item:last-child { margin-bottom: 0; }
 
     .timeline-item::before {
       content: '';
       position: absolute;
       left: -4px;
-      top: 6px;
+      top: 7px;
       width: 9px;
       height: 9px;
       border-radius: 50%;
       background: var(--gold);
+      box-shadow: 0 0 0 3px rgba(184,151,90,0.18);
     }
 
     .tl-date {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--gold);
-      padding-top: 4px;
+      padding-top: 5px;
+      line-height: 1.5;
     }
 
     .tl-role {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
+      font-size: 23px;
       font-weight: 400;
       color: var(--white);
       margin-bottom: 4px;
+      line-height: 1.2;
     }
 
     .tl-place {
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 500;
       color: var(--stone);
       margin-bottom: 14px;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
     }
 
     .tl-desc {
       font-size: 14px;
       font-weight: 300;
       color: #a0b0ae;
-      line-height: 1.75;
+      line-height: 1.8;
     }
 
     /* ── EDUCATION ── */
@@ -428,20 +517,21 @@
 
     .edu-card {
       background: var(--white);
-      padding: 32px 36px;
-      border-left: 3px solid transparent;
-      transition: border-color 0.2s ease;
+      padding: 30px 36px;
+      border-left: 2px solid transparent;
+      transition: border-color 0.2s ease, background 0.2s;
     }
-    .edu-card:hover { border-left-color: var(--gold); }
+    .edu-card:hover { border-left-color: rgba(184,151,90,0.5); }
     .edu-card.highlight { border-left-color: var(--gold); background: var(--cream); }
 
     .edu-year {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 500;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 10px;
+      display: block;
     }
 
     .edu-qual {
@@ -449,67 +539,85 @@
       font-size: 19px;
       font-weight: 400;
       color: var(--deep);
-      margin-bottom: 6px;
+      margin-bottom: 5px;
       line-height: 1.3;
     }
 
     .edu-inst {
-      font-size: 13px;
+      font-size: 12.5px;
       color: var(--mist);
       font-weight: 300;
     }
 
-    /* ── VIDEO PLACEHOLDER ── */
-    .media { background: var(--white); }
-
-    .video-placeholder {
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto;
-      aspect-ratio: 16 / 9;
-      background: var(--warm);
-      border: 1px dashed var(--stone);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      color: var(--stone);
-    }
-    .video-placeholder svg { width: 48px; height: 48px; }
-    .video-placeholder span { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; }
-
     /* ── CONTACT ── */
     .contact { background: var(--deep); padding-bottom: 120px; }
     .contact .section-heading { color: var(--cream); }
-    .contact .section-label { color: var(--gold); }
 
     .contact-body {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(20px, 2.5vw, 32px);
+      font-size: clamp(20px, 2.5vw, 30px);
       font-weight: 300;
       color: var(--stone);
-      line-height: 1.5;
-      max-width: 640px;
-      margin-bottom: 48px;
+      line-height: 1.55;
+      max-width: 620px;
+      margin-bottom: 52px;
     }
 
-    .contact-link {
-      display: inline-block;
-      font-size: 15px;
-      font-weight: 300;
-      color: var(--gold-lt);
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px;
+      margin-bottom: 40px;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
       text-decoration: none;
-      border-bottom: 1px solid rgba(180,152,90,0.3);
-      padding-bottom: 2px;
+      padding: 28px 44px 28px 0;
+      min-width: 220px;
+      border-bottom: 1px solid rgba(196,184,164,0.15);
       transition: border-color 0.2s;
     }
-    .contact-link:hover { border-color: var(--gold); }
+    .contact-item:hover { border-color: var(--gold); }
+
+    .contact-item-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .contact-item-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 21px;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+
+    .contact-item-arrow {
+      font-size: 13px;
+      color: rgba(184,151,90,0.5);
+      transition: color 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .contact-item:hover .contact-item-arrow { color: var(--gold); transform: translateX(3px); }
+
+    .contact-availability {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(196,184,164,0.45);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
 
     /* ── FOOTER ── */
     footer {
       background: var(--ink);
-      padding: 28px 40px;
+      padding: 26px 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -519,87 +627,73 @@
 
     .footer-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 300;
       color: var(--stone);
       letter-spacing: 0.06em;
     }
 
     .footer-note {
-      font-size: 12px;
-      color: #4a5755;
-      letter-spacing: 0.06em;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 22px 40px;
-      background: rgba(43, 58, 56, 0.92);
-      backdrop-filter: blur(10px);
-    }
-
-    .nav-brand {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20px;
-      font-weight: 300;
-      color: var(--white);
-      letter-spacing: 0.06em;
-      text-decoration: none;
-    }
-    .nav-brand span { color: var(--gold); }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
+      font-size: 11px;
+      color: rgba(138,158,154,0.45);
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--stone);
-      text-decoration: none;
-      transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--gold); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; min-height: unset; }
-      .hero-left { min-height: 50vh; padding: 60px 40px 50px; }
+      .hero-left { min-height: 55vh; padding: 60px 40px 52px; }
       .hero-right { padding: 60px 40px; }
-      .about-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 44px; }
       .edu-grid { grid-template-columns: 1fr; }
       .timeline-item { grid-template-columns: 1fr; gap: 8px; }
       nav { padding: 18px 24px; }
-      .nav-links { gap: 20px; }
-      section { padding: 70px 24px; }
+      .nav-links { gap: 22px; }
+      section { padding: 72px 24px; }
+      .press-card { grid-template-columns: 1fr; gap: 28px; }
     }
 
     @media (max-width: 600px) {
-      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(27, 36, 34, 0.98);
+        flex-direction: column;
+        padding: 18px 28px 24px;
+        gap: 4px;
+        border-top: 1px solid rgba(196,184,164,0.1);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li a {
+        display: block;
+        padding: 10px 0;
+        font-size: 12px;
+        border-bottom: 1px solid rgba(196,184,164,0.08);
+      }
+      .nav-links li:last-child a { border-bottom: none; }
+
       .skills-grid { grid-template-columns: 1fr; }
       .about-stats { grid-template-columns: 1fr 1fr; }
+      .hero-name { font-size: clamp(44px, 12vw, 64px); }
+      .contact-item { min-width: 100%; padding-right: 0; }
     }
 
-    /* ── FADE IN ANIMATION ── */
+    /* ── HERO LOAD ANIMATIONS ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    .hero-name-block { animation: fadeUp 0.9s ease both; }
+    .hero-name-block { animation: fadeUp 1s ease both; }
     .hero-right > * { animation: fadeUp 0.9s ease both; }
-    .hero-right > *:nth-child(1) { animation-delay: 0.15s; }
-    .hero-right > *:nth-child(2) { animation-delay: 0.3s; }
-    .hero-right > *:nth-child(3) { animation-delay: 0.45s; }
+    .hero-right > *:nth-child(1) { animation-delay: 0.2s; }
+    .hero-right > *:nth-child(2) { animation-delay: 0.35s; }
+    .hero-right > *:nth-child(3) { animation-delay: 0.5s; }
   </style>
 </head>
 <body>
@@ -607,19 +701,22 @@
   <!-- NAV -->
   <nav>
     <a href="#" class="nav-brand">Olesya <span>Pavlova</span></a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#expertise">Expertise</a></li>
       <li><a href="#career">Career</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
   <!-- HERO -->
   <div class="hero">
     <div class="hero-left">
-      <img src="olesya.jpg" alt="Olesya Pavlova" class="hero-photo" />
+      <img src="olesya.jpg" alt="Mrs Olesya Pavlova" class="hero-photo" />
       <div class="hero-name-block">
         <p class="hero-eyebrow">GDC Registered Dentist</p>
         <h1 class="hero-name">Mrs<br/><em>Olesya</em><br/>Pavlova</h1>
@@ -641,34 +738,34 @@
   <!-- ABOUT -->
   <section class="about" id="about">
     <div class="section-inner">
-      <p class="section-label">About</p>
-      <h2 class="section-heading">Dentistry with<br/>depth &amp; dedication</h2>
+      <span class="section-label fade-up">About</span>
+      <h2 class="section-heading fade-up">Dentistry with<br/>depth &amp; dedication</h2>
       <div class="about-grid">
         <div class="about-body">
-          <p>
+          <p class="fade-up">
             Mrs Olesya Pavlova is a GDC-registered dentist with a performer number, practising across Surrey in fully private and mixed NHS/private settings. She combines genuine clinical skill with warm, patient-centred care — taking time to understand each patient's goals and building personalised treatment plans that put long-term oral health first.
           </p>
-          <p>
+          <p class="fade-up">
             Her clinical background spans general and restorative dentistry, endodontics, and facial aesthetics. She is proficient with the latest dental technologies: rotary endodontic systems, dental loupes, intraoral cameras, digital radiography, and dental microscopes — tools that allow for greater precision and less invasive treatment.
           </p>
-          <p>
+          <p class="fade-up">
             Olesya is currently pursuing a Master's in Restorative Dentistry with Tipton Training, reflecting her commitment to staying current in the profession and offering patients thoughtful, up-to-date care.
           </p>
         </div>
         <div class="about-stats">
-          <div class="stat-card">
+          <div class="stat-card fade-up">
             <div class="stat-num">20+</div>
             <div class="stat-label">Years in practice</div>
           </div>
-          <div class="stat-card">
+          <div class="stat-card fade-up">
             <div class="stat-num">MSc</div>
             <div class="stat-label">Restorative dentistry (in progress)</div>
           </div>
-          <div class="stat-card">
+          <div class="stat-card fade-up">
             <div class="stat-num">Private &amp;<br/>NHS</div>
             <div class="stat-label">Broad practice experience</div>
           </div>
-          <div class="stat-card">
+          <div class="stat-card fade-up">
             <div class="stat-num">GDC</div>
             <div class="stat-label">Registered &amp; performer-listed</div>
           </div>
@@ -682,15 +779,18 @@
   <!-- PRESS -->
   <section class="press" id="press">
     <div class="section-inner">
-      <p class="section-label">In the press</p>
-      <h2 class="section-heading">Featured by the<br/>British Dental Association</h2>
-      <div class="press-card">
+      <span class="section-label fade-up">In the press</span>
+      <h2 class="section-heading fade-up">Featured by the<br/>British Dental Association</h2>
+      <div class="press-card fade-up">
         <div>
           <p class="press-publication">BDA Blog</p>
           <p class="press-quote">"Building a dental career across Russia, Switzerland and the UK"</p>
           <p class="press-desc">Olesya shares her journey — qualifying in St. Petersburg, practising in Geneva, and building a career in the UK — offering insight and guidance for internationally trained dentists navigating the path to UK practice.</p>
         </div>
-        <a href="https://www.bda.org/news-and-opinion/blog/building-a-dental-career-across-russia-switzerland-and-the-uk/" target="_blank" rel="noopener" class="press-link">Read the article &rarr;</a>
+        <a href="https://www.bda.org/news-and-opinion/blog/building-a-dental-career-across-russia-switzerland-and-the-uk/" target="_blank" rel="noopener" class="press-link">
+          Read the article
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
     </div>
   </section>
@@ -698,39 +798,86 @@
   <!-- EXPERTISE -->
   <section class="expertise" id="expertise">
     <div class="section-inner">
-      <p class="section-label">Expertise</p>
-      <h2 class="section-heading">Areas of clinical<br/>specialisation</h2>
+      <span class="section-label fade-up">Expertise</span>
+      <h2 class="section-heading fade-up">Areas of clinical<br/>specialisation</h2>
       <div class="skills-grid">
-        <div class="skill-card">
-          <div class="skill-icon"></div>
+
+        <div class="skill-card fade-up">
+          <div class="skill-icon">
+            <!-- Tooth / crown icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2C9 2 7 4 7 6c0 1.5.3 2.5.8 3.5L9 20c.1.6.5 2 2 2h2c1.5 0 1.9-1.4 2-2l1.2-10.5c.5-1 .8-2 .8-3.5 0-2-2-4-5-4z"/>
+              <path d="M9 6c1 1 2 1.5 3 1.5s2-.5 3-1.5"/>
+            </svg>
+          </div>
           <h3 class="skill-title">Fillings, Crowns &amp; Repairs</h3>
           <p class="skill-desc">From simple fillings to crowns, bridges, and dentures — restoring damaged or missing teeth as carefully and conservatively as possible.</p>
         </div>
-        <div class="skill-card">
-          <div class="skill-icon"></div>
+
+        <div class="skill-card fade-up">
+          <div class="skill-icon">
+            <!-- Root canal / precision tool icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.5 2.5l7 7-2 2-7-7 2-2z"/>
+              <path d="M19 7l-9.5 9.5"/>
+              <path d="M9.5 16.5L5 21a1.4 1.4 0 0 0 0 2l.6-.6a1.4 1.4 0 0 0 2 0L9.5 20"/>
+              <circle cx="6.5" cy="19.5" r="1.5"/>
+            </svg>
+          </div>
           <h3 class="skill-title">Root Canal Treatment</h3>
           <p class="skill-desc">Saving a tooth that's badly decayed or infected, rather than removing it. Carried out with precision tools and magnification to keep things as comfortable as possible.</p>
         </div>
-        <div class="skill-card">
-          <div class="skill-icon"></div>
+
+        <div class="skill-card fade-up">
+          <div class="skill-icon">
+            <!-- Sparkle / aesthetics icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+            </svg>
+          </div>
           <h3 class="skill-title">Facial Aesthetics</h3>
           <p class="skill-desc">Non-surgical treatments such as anti-wrinkle injections and dermal fillers — a natural complement to dental care for patients who want to feel their best.</p>
         </div>
-        <div class="skill-card">
-          <div class="skill-icon"></div>
+
+        <div class="skill-card fade-up">
+          <div class="skill-icon">
+            <!-- Digital / scan technology icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <path d="M8 21h8M12 17v4"/>
+              <path d="M7 8h10M7 11h6"/>
+              <circle cx="17" cy="11" r="1" fill="currentColor"/>
+            </svg>
+          </div>
           <h3 class="skill-title">Modern Technology</h3>
           <p class="skill-desc">Using digital X-rays, scanning tools, and magnification equipment to see more clearly, diagnose accurately, and make visits as straightforward as possible.</p>
         </div>
-        <div class="skill-card">
-          <div class="skill-icon"></div>
+
+        <div class="skill-card fade-up">
+          <div class="skill-icon">
+            <!-- Shield / gum health icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </div>
           <h3 class="skill-title">Gum Health</h3>
           <p class="skill-desc">Caring for your gums with practical advice, cleaning, and treatment for gum disease — because healthy gums are the foundation of a healthy mouth.</p>
         </div>
-        <div class="skill-card">
-          <div class="skill-icon"></div>
+
+        <div class="skill-card fade-up">
+          <div class="skill-icon">
+            <!-- Clipboard / personal plan icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+              <rect x="8" y="2" width="8" height="4" rx="1"/>
+              <path d="M9 12h6M9 16h4"/>
+            </svg>
+          </div>
           <h3 class="skill-title">Personal Treatment Plans</h3>
           <p class="skill-desc">Taking the time to understand what you want from your dental care and putting together a clear, honest plan that works around your needs and lifestyle.</p>
         </div>
+
       </div>
     </div>
   </section>
@@ -738,11 +885,11 @@
   <!-- CAREER -->
   <section class="career" id="career">
     <div class="section-inner">
-      <p class="section-label">Career</p>
-      <h2 class="section-heading">Clinical journey</h2>
+      <span class="section-label fade-up">Career</span>
+      <h2 class="section-heading fade-up">Clinical journey</h2>
       <div class="timeline">
 
-        <div class="timeline-item">
+        <div class="timeline-item fade-up">
           <div class="tl-date">2016 – Present</div>
           <div>
             <div class="tl-role">General Dentist</div>
@@ -751,7 +898,7 @@
           </div>
         </div>
 
-        <div class="timeline-item">
+        <div class="timeline-item fade-up">
           <div class="tl-date">2015 – 2016</div>
           <div>
             <div class="tl-role">General Dentist</div>
@@ -760,7 +907,7 @@
           </div>
         </div>
 
-        <div class="timeline-item">
+        <div class="timeline-item fade-up">
           <div class="tl-date">2010 – 2015</div>
           <div>
             <div class="tl-role">Dental Hygienist</div>
@@ -769,7 +916,7 @@
           </div>
         </div>
 
-        <div class="timeline-item">
+        <div class="timeline-item fade-up">
           <div class="tl-date">2005 – 2010</div>
           <div>
             <div class="tl-role">Dental Nurse, Hygienist &amp; Dental Therapist</div>
@@ -785,61 +932,61 @@
   <!-- EDUCATION -->
   <section class="education" id="education">
     <div class="section-inner">
-      <p class="section-label">Education &amp; Qualifications</p>
-      <h2 class="section-heading">Committed to<br/>lifelong learning</h2>
+      <span class="section-label fade-up">Education &amp; Qualifications</span>
+      <h2 class="section-heading fade-up">Committed to<br/>lifelong learning</h2>
       <div class="edu-grid">
-        <div class="edu-card highlight">
-          <div class="edu-year">In progress – 2027</div>
+        <div class="edu-card highlight fade-up">
+          <span class="edu-year">In progress – 2027</span>
           <div class="edu-qual">MSc Restorative Dentistry</div>
           <div class="edu-inst">Tipton Training</div>
         </div>
-        <div class="edu-card">
-          <div class="edu-year">2025</div>
+        <div class="edu-card fade-up">
+          <span class="edu-year">2025</span>
           <div class="edu-qual">Postgraduate Diploma in Prosthodontics</div>
           <div class="edu-inst">Tipton Training</div>
         </div>
-        <div class="edu-card">
-          <div class="edu-year">2024 – 2025</div>
+        <div class="edu-card fade-up">
+          <span class="edu-year">2024 – 2025</span>
           <div class="edu-qual">Certificate in Restorative Dentistry</div>
           <div class="edu-inst">Tipton Training</div>
         </div>
-        <div class="edu-card">
-          <div class="edu-year">2023 – 2024</div>
+        <div class="edu-card fade-up">
+          <span class="edu-year">2023 – 2024</span>
           <div class="edu-qual">Certificate in Operative Dentistry</div>
           <div class="edu-inst">Tipton Training</div>
         </div>
-        <div class="edu-card">
-          <div class="edu-year">2023</div>
+        <div class="edu-card fade-up">
+          <span class="edu-year">2023</span>
           <div class="edu-qual">Certificate in Facial Aesthetics</div>
           <div class="edu-inst">Cosmetic Courses</div>
         </div>
-        <div class="edu-card">
-          <div class="edu-year">2019</div>
+        <div class="edu-card fade-up">
+          <span class="edu-year">2019</span>
           <div class="edu-qual">Certificate in Dental Law and Ethics</div>
           <div class="edu-inst"></div>
         </div>
-        <div class="edu-card">
-          <div class="edu-year">2014</div>
+        <div class="edu-card fade-up">
+          <span class="edu-year">2014</span>
           <div class="edu-qual">Certificate in Conservative Dentistry</div>
           <div class="edu-inst">Institute of Dentistry, St. Petersburg</div>
         </div>
-        <div class="edu-card">
-          <div class="edu-year">2012</div>
+        <div class="edu-card fade-up">
+          <span class="edu-year">2012</span>
           <div class="edu-qual">ORE Statutory Exam</div>
           <div class="edu-inst">London</div>
         </div>
-        <div class="edu-card">
-          <div class="edu-year">2008 – 2010</div>
+        <div class="edu-card fade-up">
+          <span class="edu-year">2008 – 2010</span>
           <div class="edu-qual">Diploma in Dental Hygiene &amp; Therapy</div>
           <div class="edu-inst">King's College Hospital, London</div>
         </div>
-        <div class="edu-card">
-          <div class="edu-year">1998 – 2003</div>
+        <div class="edu-card fade-up">
+          <span class="edu-year">1998 – 2003</span>
           <div class="edu-qual">BDS (Bachelor of Dental Surgery)</div>
           <div class="edu-inst">State Medical University of I.P. Pavlov, St. Petersburg</div>
         </div>
-        <div class="edu-card">
-          <div class="edu-year">–</div>
+        <div class="edu-card fade-up">
+          <span class="edu-year">–</span>
           <div class="edu-qual">Certificate in PTLLS</div>
           <div class="edu-inst">Preparing to Teach in the Lifelong Learning Sector</div>
         </div>
@@ -847,29 +994,25 @@
     </div>
   </section>
 
-  <!-- VIDEO PLACEHOLDER -->
-  <section class="media" id="media">
-    <div class="section-inner">
-      <p class="section-label">In conversation</p>
-      <h2 class="section-heading">Meet Mrs Pavlova</h2>
-      <!-- VIDEO: Replace the div below with a <video> or <iframe> embed when ready -->
-      <div class="video-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="10"/>
-          <polygon points="10,8 16,12 10,16" fill="currentColor"/>
-        </svg>
-        <span>Video coming soon</span>
-      </div>
-    </div>
-  </section>
-
   <!-- CONTACT -->
   <section class="contact" id="contact">
     <div class="section-inner">
-      <p class="section-label">Contact</p>
-      <h2 class="section-heading">Let's talk</h2>
-      <p class="contact-body">Whether you're a patient looking for caring, personalised dental treatment, or a practice interested in Olesya's experience — please don't hesitate to get in touch.</p>
-      <a href="mailto:dentalolesya@gmail.com" class="contact-link">dentalolesya@gmail.com</a>
+      <span class="section-label fade-up">Contact</span>
+      <h2 class="section-heading fade-up">Let's talk</h2>
+      <p class="contact-body fade-up">Whether you're a patient looking for caring, personalised dental treatment, or a practice interested in Olesya's experience — please don't hesitate to get in touch.</p>
+      <div class="contact-links fade-up">
+        <a href="mailto:dentalolesya@gmail.com" class="contact-item">
+          <span class="contact-item-label">Email</span>
+          <span class="contact-item-value">dentalolesya@gmail.com</span>
+          <span class="contact-item-arrow">→</span>
+        </a>
+        <a href="https://www.linkedin.com/in/olesyapavlova" target="_blank" rel="noopener" class="contact-item">
+          <span class="contact-item-label">LinkedIn</span>
+          <span class="contact-item-value">Connect professionally</span>
+          <span class="contact-item-arrow">→</span>
+        </a>
+      </div>
+      <p class="contact-availability fade-up">Based in Surrey &nbsp;·&nbsp; Available for private &amp; mixed practice</p>
     </div>
   </section>
 
@@ -879,5 +1022,36 @@
     <span class="footer-note">GDC Registered Dentist &nbsp;·&nbsp; Surrey, UK</span>
   </footer>
 
+  <script>
+    // ── Hamburger menu ──────────────────────────────────────────
+    const toggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // ── Scroll fade-in animations ───────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
