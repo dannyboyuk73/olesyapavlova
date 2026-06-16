@@ -640,6 +640,69 @@
       text-transform: uppercase;
     }
 
+    /* ── INJECTABLES ── */
+    .injectables { background: var(--deep); }
+    .injectables .section-heading { color: var(--cream); }
+
+    .injectables-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+    }
+
+    .inject-cat {
+      background: rgba(255,255,255,0.04);
+      padding: 32px 26px 36px;
+      transition: background 0.2s;
+    }
+    .inject-cat:hover { background: rgba(255,255,255,0.07); }
+
+    .inject-cat-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .inject-cat-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.25;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(196,184,164,0.12);
+    }
+
+    .inject-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .inject-list li {
+      font-size: 13px;
+      font-weight: 300;
+      color: #9fb0ad;
+      line-height: 1.5;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(196,184,164,0.06);
+      display: flex;
+      align-items: baseline;
+      gap: 9px;
+    }
+    .inject-list li:last-child { border-bottom: none; }
+    .inject-list li::before {
+      content: '–';
+      color: var(--gold);
+      opacity: 0.55;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; min-height: unset; }
@@ -652,6 +715,7 @@
       .nav-links { gap: 22px; }
       section { padding: 72px 24px; }
       .press-card { grid-template-columns: 1fr; gap: 28px; }
+      .injectables-grid { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 600px) {
@@ -679,6 +743,7 @@
       .nav-links li:last-child a { border-bottom: none; }
 
       .skills-grid { grid-template-columns: 1fr; }
+      .injectables-grid { grid-template-columns: 1fr; }
       .about-stats { grid-template-columns: 1fr 1fr; }
       .hero-name { font-size: clamp(44px, 12vw, 64px); }
       .contact-item { min-width: 100%; padding-right: 0; }
@@ -704,6 +769,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#injectables">Injectables</a></li>
       <li><a href="#career">Career</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -836,7 +902,7 @@
             </svg>
           </div>
           <h3 class="skill-title">Facial Aesthetics</h3>
-          <p class="skill-desc">Non-surgical treatments such as anti-wrinkle injections and dermal fillers — a natural complement to dental care for patients who want to feel their best.</p>
+          <p class="skill-desc">Botox and dermal filler treatments spanning upper and lower face, standard and advanced fillers, and full-face transformations — see the full treatment list below.</p>
         </div>
 
         <div class="skill-card fade-up">
@@ -876,6 +942,74 @@
           </div>
           <h3 class="skill-title">Personal Treatment Plans</h3>
           <p class="skill-desc">Taking the time to understand what you want from your dental care and putting together a clear, honest plan that works around your needs and lifestyle.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- INJECTABLES -->
+  <section class="injectables" id="injectables">
+    <div class="section-inner">
+      <span class="section-label fade-up">Cosmetic Injectables</span>
+      <h2 class="section-heading fade-up">Anti-wrinkle &amp;<br/>dermal filler treatments</h2>
+      <div class="injectables-grid">
+
+        <div class="inject-cat fade-up">
+          <span class="inject-cat-label">Botox</span>
+          <div class="inject-cat-title">Upper Face</div>
+          <ul class="inject-list">
+            <li>Frown Lines</li>
+            <li>Forehead Lines</li>
+            <li>Crow's Feet</li>
+            <li>Bunny Lines</li>
+            <li>Brow Lift</li>
+          </ul>
+        </div>
+
+        <div class="inject-cat fade-up">
+          <span class="inject-cat-label">Botox</span>
+          <div class="inject-cat-title">Lower Face</div>
+          <ul class="inject-list">
+            <li>Neck &amp; Platysmal Bands</li>
+            <li>Jawline Slimming</li>
+            <li>Gummy Smiles</li>
+            <li>Lip Flip</li>
+            <li>Perioral Lines</li>
+            <li>Pebbled Chin</li>
+            <li>Hyperhidrosis</li>
+          </ul>
+        </div>
+
+        <div class="inject-cat fade-up">
+          <span class="inject-cat-label">Dermal Fillers</span>
+          <div class="inject-cat-title">Standard</div>
+          <ul class="inject-list">
+            <li>Lip Volume</li>
+            <li>Nasolabial Folds</li>
+            <li>Marionette Lines</li>
+            <li>Cheek Volume</li>
+            <li>Jawline Filler</li>
+            <li>Chin Filler</li>
+          </ul>
+        </div>
+
+        <div class="inject-cat fade-up">
+          <span class="inject-cat-label">Dermal Fillers</span>
+          <div class="inject-cat-title">Masterclass</div>
+          <ul class="inject-list">
+            <li>Tear Troughs</li>
+            <li>Non-surgical Rhinoplasty</li>
+          </ul>
+        </div>
+
+        <div class="inject-cat fade-up">
+          <span class="inject-cat-label">Advanced</span>
+          <div class="inject-cat-title">Full-face Transformations</div>
+          <ul class="inject-list">
+            <li>Feminisation</li>
+            <li>Masculinisation</li>
+          </ul>
         </div>
 
       </div>
