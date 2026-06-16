@@ -614,6 +614,92 @@
       text-transform: uppercase;
     }
 
+    /* ── CONTACT FORM ── */
+    .contact-form {
+      max-width: 580px;
+      margin-top: 8px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(196,184,164,0.15);
+      border-radius: 2px;
+      padding: 13px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--cream);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(196,184,164,0.3); }
+
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: rgba(184,151,90,0.5); }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-submit {
+      display: inline-block;
+      padding: 14px 40px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: var(--ink);
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
+      margin-top: 8px;
+    }
+    .form-submit:hover { background: var(--gold-lt); }
+    .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .form-status {
+      margin-top: 16px;
+      font-size: 13px;
+      font-weight: 300;
+      display: none;
+    }
+    .form-status.success { color: #7ec8a4; display: block; }
+    .form-status.error   { color: #e08080; display: block; }
+
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
     /* ── FOOTER ── */
     footer {
       background: var(--ink);
@@ -1139,15 +1225,32 @@
     <div class="section-inner">
       <span class="section-label fade-up">Contact</span>
       <h2 class="section-heading fade-up">Let's talk</h2>
-      <p class="contact-body fade-up">Whether you're a patient looking for caring, personalised dental treatment, or a practice interested in Olesya's experience — please don't hesitate to get in touch.</p>
-      <div class="contact-links fade-up">
-        <a href="mailto:hello@olesyapavlova.co.uk" class="contact-item">
-          <span class="contact-item-label">Email</span>
-          <span class="contact-item-value">hello@olesyapavlova.co.uk</span>
-          <span class="contact-item-arrow">→</span>
-        </a>
-      </div>
-      <p class="contact-availability fade-up">Based in Surrey &nbsp;·&nbsp; Available for private &amp; mixed practice</p>
+      <p class="contact-body fade-up">Whether you're a patient looking for caring, personalised dental or aesthetic treatment, or a practice interested in Olesya's experience — please get in touch.</p>
+
+      <form class="contact-form fade-up" id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="cf-email">Email</label>
+            <input type="email" id="cf-email" name="email" placeholder="your@email.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cf-phone">Phone <span style="opacity:0.4;font-size:9px;letter-spacing:0">(optional)</span></label>
+          <input type="tel" id="cf-phone" name="phone" placeholder="+44 7700 000000" />
+        </div>
+        <div class="form-group">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" placeholder="How can I help?" required></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="formSubmit">Send message</button>
+        <p class="form-status" id="formStatus"></p>
+      </form>
+
+      <p class="contact-availability fade-up" style="margin-top:40px">Based in Surrey &nbsp;·&nbsp; hello@olesyapavlova.co.uk</p>
     </div>
   </section>
 
@@ -1187,6 +1290,47 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ── Contact form ────────────────────────────────────────────
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn    = document.getElementById('formSubmit');
+      const status = document.getElementById('formStatus');
+      const data   = {
+        name:    document.getElementById('cf-name').value.trim(),
+        email:   document.getElementById('cf-email').value.trim(),
+        phone:   document.getElementById('cf-phone').value.trim(),
+        message: document.getElementById('cf-message').value.trim(),
+      };
+      if (!data.name || !data.email || !data.message) {
+        status.textContent = 'Please fill in your name, email and message.';
+        status.className = 'form-status error';
+        return;
+      }
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      status.className = 'form-status';
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (json.ok) {
+          status.textContent = 'Message sent — thank you. Olesya will be in touch shortly.';
+          status.className = 'form-status success';
+          e.target.reset();
+        } else {
+          throw new Error(json.error || 'Unknown error');
+        }
+      } catch (err) {
+        status.textContent = err.message || 'Something went wrong. Please try emailing directly.';
+        status.className = 'form-status error';
+      }
+      btn.disabled = false;
+      btn.textContent = 'Send message';
+    });
   </script>
 </body>
 </html>
