@@ -556,6 +556,51 @@
       font-weight: 300;
     }
 
+    /* ── TRUST ── */
+    .trust { background: var(--ink); padding: 100px 0; }
+    .trust-statement {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(24px, 3.8vw, 44px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.35;
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto 72px;
+    }
+    .trust-statement em { color: var(--gold); font-style: normal; }
+    .trust-pillars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+    .trust-pillar {
+      padding: 36px 28px;
+      background: rgba(255,255,255,0.025);
+      border-top: 2px solid rgba(184,151,90,0.25);
+    }
+    .trust-pillar-title {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .trust-pillar-body {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: rgba(196,184,164,0.65);
+      line-height: 1.75;
+    }
+    @media (max-width: 900px) {
+      .trust-pillars { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 540px) {
+      .trust-pillars { grid-template-columns: 1fr; }
+    }
+
     /* ── CONTACT ── */
     .contact { background: var(--deep); padding-bottom: 120px; }
     .contact .section-heading { color: var(--cream); }
@@ -1044,6 +1089,36 @@
             <div class="stat-label">Practising across Surrey</div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="trust">
+    <div class="section-inner">
+      <p class="trust-statement fade-up">If you're going to trust someone<br/>to inject your face,<br/><em>a dentist is the obvious choice.</em></p>
+      <div class="trust-pillars">
+
+        <div class="trust-pillar fade-up">
+          <div class="trust-pillar-title">Injections every day</div>
+          <p class="trust-pillar-body">Administering facial injections is a core part of clinical dentistry. Olesya has placed thousands of them over twenty years — with the anatomical confidence and steady hand that only comes from daily practice.</p>
+        </div>
+
+        <div class="trust-pillar fade-up">
+          <div class="trust-pillar-title">Facial anatomy expert</div>
+          <p class="trust-pillar-body">The face is the dentist's domain. Every nerve, muscle, blood vessel and tissue plane in the face is covered in depth during dental training — and applied every day in the chair. That same knowledge protects you during every aesthetic treatment.</p>
+        </div>
+
+        <div class="trust-pillar fade-up">
+          <div class="trust-pillar-title">Highly regulated</div>
+          <p class="trust-pillar-body">GDC-registered dentists operate under some of the strictest clinical governance in UK healthcare — mandatory continuing education, rigorous annual appraisals, and full professional indemnity. These are standards beauty therapists are not held to.</p>
+        </div>
+
+        <div class="trust-pillar fade-up">
+          <div class="trust-pillar-title">UK law is changing</div>
+          <p class="trust-pillar-body">Under the Health and Care Act 2022, botulinum toxin in the UK must now be prescribed by a qualified healthcare professional. Dentists meet that requirement. Beauticians and hairdressers do not — and the consequences of going to an unqualified practitioner can be severe.</p>
+        </div>
+
       </div>
     </div>
   </section>
