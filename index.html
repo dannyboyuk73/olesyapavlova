@@ -856,6 +856,25 @@
       font-size: 11px;
       flex-shrink: 0;
     }
+    .inject-price {
+      margin-left: auto;
+      padding-left: 12px;
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      opacity: 0.75;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .inject-pkg-note {
+      margin-top: 10px;
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(196,184,164,0.45);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
 
     @media (hover: hover) {
       .inject-list li[data-tip]:hover { color: var(--cream); }
@@ -1042,37 +1061,38 @@
           <span class="inject-cat-label">Anti-wrinkle</span>
           <div class="inject-cat-title">Upper Face</div>
           <ul class="inject-list">
-            <li data-tip="Smooths the vertical '11' lines between the brows that form from frowning or concentrating.">Frown Lines</li>
-            <li data-tip="Relaxes horizontal creases across the forehead for a smoother, more rested look.">Forehead Lines</li>
-            <li data-tip="Softens the fine lines that fan out from the outer corners of the eyes when smiling.">Crow's Feet</li>
-            <li data-tip="Reduces the small diagonal creases on either side of the nose that appear when smiling.">Bunny Lines</li>
-            <li data-tip="Gently elevates the brow arch to open up the eyes and create a fresher appearance.">Brow Lift</li>
+            <li data-tip="Smooths the vertical '11' lines between the brows that form from frowning or concentrating.">Frown Lines<span class="inject-price">£180</span></li>
+            <li data-tip="Relaxes horizontal creases across the forehead for a smoother, more rested look.">Forehead Lines<span class="inject-price">£180</span></li>
+            <li data-tip="Softens the fine lines that fan out from the outer corners of the eyes when smiling.">Crow's Feet<span class="inject-price">£180</span></li>
+            <li data-tip="Reduces the small diagonal creases on either side of the nose that appear when smiling.">Bunny Lines<span class="inject-price">£160</span></li>
+            <li data-tip="Gently elevates the brow arch to open up the eyes and create a fresher appearance.">Brow Lift<span class="inject-price">£160</span></li>
           </ul>
+          <p class="inject-pkg-note">2 areas £250 &nbsp;·&nbsp; 3 areas £310</p>
         </div>
 
         <div class="inject-cat fade-up">
           <span class="inject-cat-label">Anti-wrinkle</span>
           <div class="inject-cat-title">Lower Face</div>
           <ul class="inject-list">
-            <li data-tip="Relaxes the vertical cords in the neck for a smoother, more youthful neckline.">Neck &amp; Platysmal Bands</li>
-            <li data-tip="Reduces the masseter jaw muscles to slim and soften a wide or square face shape.">Jawline Slimming</li>
-            <li data-tip="Prevents the upper lip from lifting too high when smiling, reducing visible gum.">Gummy Smiles</li>
-            <li data-tip="A small amount of relaxant along the upper lip border creates a subtle pout without adding filler.">Lip Flip</li>
-            <li data-tip="Softens the fine vertical lines around the mouth, sometimes called smoker's or lipstick lines.">Perioral Lines</li>
-            <li data-tip="Smooths an uneven, dimpled or 'orange peel' texture on the chin for a cleaner profile.">Pebbled Chin</li>
+            <li data-tip="Relaxes the vertical cords in the neck for a smoother, more youthful neckline.">Neck &amp; Platysmal Bands<span class="inject-price">£300</span></li>
+            <li data-tip="Reduces the masseter jaw muscles to slim and soften a wide or square face shape.">Jawline Slimming<span class="inject-price">£350</span></li>
+            <li data-tip="Prevents the upper lip from lifting too high when smiling, reducing visible gum.">Gummy Smiles<span class="inject-price">£190</span></li>
+            <li data-tip="A small amount of relaxant along the upper lip border creates a subtle pout without adding filler.">Lip Flip<span class="inject-price">£160</span></li>
+            <li data-tip="Softens the fine vertical lines around the mouth, sometimes called smoker's or lipstick lines.">Perioral Lines<span class="inject-price">£190</span></li>
+            <li data-tip="Smooths an uneven, dimpled or 'orange peel' texture on the chin for a cleaner profile.">Pebbled Chin<span class="inject-price">£160</span></li>
           </ul>
         </div>
 
         <div class="inject-cat fade-up">
           <span class="inject-cat-label">Dermal Fillers</span>
-          <div class="inject-cat-title">Standard</div>
+          <div class="inject-cat-title">Standard <span style="font-size:11px;font-weight:300;opacity:0.5;letter-spacing:0.03em;">per 1ml</span></div>
           <ul class="inject-list">
-            <li data-tip="Adds natural-looking fullness and definition to the lips, tailored to your desired shape.">Lip Volume</li>
-            <li data-tip="Softens the lines running from the sides of the nose down to the corners of the mouth.">Nasolabial Folds</li>
-            <li data-tip="Fills the downward creases from the corners of the mouth that can give a sad or stern expression.">Marionette Lines</li>
-            <li data-tip="Restores lost volume or enhances cheekbone definition for a lifted, sculpted look.">Cheek Volume</li>
-            <li data-tip="Defines and sharpens the jawline using filler for a more structured, contoured profile.">Jawline Filler</li>
-            <li data-tip="Adds projection and balance to the chin to improve overall facial harmony and proportion.">Chin Filler</li>
+            <li data-tip="Adds natural-looking fullness and definition to the lips, tailored to your desired shape.">Lip Volume<span class="inject-price">£310</span></li>
+            <li data-tip="Softens the lines running from the sides of the nose down to the corners of the mouth.">Nasolabial Folds<span class="inject-price">£295</span></li>
+            <li data-tip="Fills the downward creases from the corners of the mouth that can give a sad or stern expression.">Marionette Lines<span class="inject-price">£295</span></li>
+            <li data-tip="Restores lost volume or enhances cheekbone definition for a lifted, sculpted look.">Cheek Volume<span class="inject-price">£295</span></li>
+            <li data-tip="Defines and sharpens the jawline using filler for a more structured, contoured profile.">Jawline Filler<span class="inject-price">£320</span></li>
+            <li data-tip="Adds projection and balance to the chin to improve overall facial harmony and proportion.">Chin Filler<span class="inject-price">£295</span></li>
           </ul>
         </div>
 
@@ -1080,8 +1100,8 @@
           <span class="inject-cat-label">Dermal Fillers</span>
           <div class="inject-cat-title">Masterclass</div>
           <ul class="inject-list">
-            <li data-tip="Reduces the hollows and dark shadows beneath the eyes for a fresher, less tired appearance.">Tear Troughs</li>
-            <li data-tip="Reshapes and refines the nose without surgery using precise filler placement to smooth bumps or lift the tip.">Non-surgical Rhinoplasty</li>
+            <li data-tip="Reduces the hollows and dark shadows beneath the eyes for a fresher, less tired appearance.">Tear Troughs<span class="inject-price">£400</span></li>
+            <li data-tip="Reshapes and refines the nose without surgery using precise filler placement to smooth bumps or lift the tip.">Non-surgical Rhinoplasty<span class="inject-price">£450</span></li>
           </ul>
         </div>
 
@@ -1089,8 +1109,8 @@
           <span class="inject-cat-label">Advanced</span>
           <div class="inject-cat-title">Full-face Transformations</div>
           <ul class="inject-list">
-            <li data-tip="A bespoke combination of treatments designed to soften and enhance typically feminine facial features.">Feminisation</li>
-            <li data-tip="A bespoke combination of treatments designed to define and sharpen typically masculine facial features.">Masculinisation</li>
+            <li data-tip="A bespoke combination of treatments designed to soften and enhance typically feminine facial features.">Feminisation<span class="inject-price">from £700</span></li>
+            <li data-tip="A bespoke combination of treatments designed to define and sharpen typically masculine facial features.">Masculinisation<span class="inject-price">from £700</span></li>
           </ul>
         </div>
 
@@ -1098,7 +1118,7 @@
           <span class="inject-cat-label">Anti-wrinkle / Body</span>
           <div class="inject-cat-title">Excessive Sweating</div>
           <ul class="inject-list">
-            <li data-tip="Small injections into the underarm block the nerve signals that trigger sweat glands, giving relief for 6–12 months.">Underarm treatment</li>
+            <li data-tip="Small injections into the underarm block the nerve signals that trigger sweat glands, giving relief for 6–12 months.">Underarm treatment<span class="inject-price">£450</span></li>
             <li data-tip="An effective, long-lasting solution for uncontrollable sweating that significantly improves daily comfort and confidence.">Stops excessive sweating (hyperhidrosis)</li>
           </ul>
         </div>
