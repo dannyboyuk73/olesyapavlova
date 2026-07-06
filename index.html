@@ -666,6 +666,40 @@
       text-transform: uppercase;
     }
 
+    .contact-reach {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 20px 64px;
+      margin-bottom: 52px;
+    }
+    .contact-reach .contact-links {
+      flex: 1 1 300px;
+      flex-direction: column;
+      margin-bottom: 0;
+    }
+    .contact-qr {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .contact-qr-card {
+      background: #fff;
+      padding: 16px;
+      border-radius: 10px;
+      box-shadow: 0 12px 44px rgba(0,0,0,0.28);
+    }
+    .contact-qr-card img { width: 148px; height: 148px; display: block; }
+    .contact-qr-caption {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+    }
+
     /* ── LOCATION ── */
     .location-grid {
       display: grid;
@@ -1442,6 +1476,25 @@
       <span class="section-label fade-up">Contact</span>
       <h2 class="section-heading fade-up">Let's talk</h2>
       <p class="contact-body fade-up">Whether you're interested in facial aesthetic treatments, or looking for caring and personalised dentistry — or a practice interested in Olesya's experience — please get in touch.</p>
+
+      <div class="contact-reach fade-up">
+        <div class="contact-links">
+          <a class="contact-item" href="tel:+447557884658">
+            <span class="contact-item-label">Call or text</span>
+            <span class="contact-item-value">+44 7557 884658 <span class="contact-item-arrow">→</span></span>
+          </a>
+          <a class="contact-item" href="mailto:hello@olesyapavlova.co.uk">
+            <span class="contact-item-label">Email</span>
+            <span class="contact-item-value">hello@olesyapavlova.co.uk <span class="contact-item-arrow">→</span></span>
+          </a>
+        </div>
+        <div class="contact-qr">
+          <div class="contact-qr-card">
+            <img src="contact-qr.svg" alt="QR code — scan to save Mrs Olesya Pavlova's contact details" width="148" height="148" />
+          </div>
+          <span class="contact-qr-caption">Scan to save my details</span>
+        </div>
+      </div>
 
       <form class="contact-form fade-up" id="contactForm" novalidate>
         <div class="form-row">
