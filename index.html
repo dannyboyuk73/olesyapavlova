@@ -615,98 +615,117 @@
       margin-bottom: 52px;
     }
 
-    .contact-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2px;
-      margin-bottom: 40px;
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 380px) 1fr;
+      gap: 72px;
+      align-items: start;
     }
 
-    .contact-item {
+    .contact-aside { display: flex; flex-direction: column; }
+
+    .contact-methods {
+      list-style: none;
+      margin: 0 0 32px;
+      padding: 0;
+      border-top: 1px solid rgba(196,184,164,0.14);
+    }
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 19px 6px;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(196,184,164,0.14);
+      transition: padding-left 0.25s ease, background 0.25s ease;
+    }
+    .contact-method:hover {
+      padding-left: 14px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .contact-method-icon {
+      flex-shrink: 0;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid rgba(184,151,90,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .contact-method:hover .contact-method-icon {
+      border-color: var(--gold);
+      background: rgba(184,151,90,0.1);
+    }
+    .contact-method-icon svg {
+      width: 21px;
+      height: 21px;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .contact-method-icon .i-gold { stroke: var(--gold); stroke-width: 1.7; }
+    .contact-method-icon .i-wa { fill: #25D366; stroke: none; }
+
+    .contact-method-text {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      text-decoration: none;
-      padding: 28px 44px 28px 0;
-      min-width: 220px;
-      border-bottom: 1px solid rgba(196,184,164,0.15);
-      transition: border-color 0.2s;
+      gap: 5px;
+      min-width: 0;
     }
-    .contact-item:hover { border-color: var(--gold); }
-
-    .contact-item-label {
+    .contact-method-label {
       font-size: 10px;
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--gold);
     }
-
-    .contact-item-value {
+    .contact-method-value {
       font-family: 'Cormorant Garamond', serif;
       font-size: 21px;
       font-weight: 300;
       color: var(--cream);
-      line-height: 1.2;
+      line-height: 1.15;
     }
 
-    .contact-item-arrow {
-      font-size: 13px;
-      color: rgba(184,151,90,0.5);
-      transition: color 0.2s, transform 0.2s;
-      display: inline-block;
-    }
-    .contact-item:hover .contact-item-arrow { color: var(--gold); transform: translateX(3px); }
-
-    .contact-availability {
-      font-size: 12px;
-      font-weight: 300;
-      color: rgba(196,184,164,0.45);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .contact-reach {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-start;
-      gap: 20px 64px;
-      margin-bottom: 52px;
-    }
-    .contact-reach .contact-links {
-      flex: 1 1 300px;
-      flex-direction: column;
-      margin-bottom: 0;
-    }
     .contact-qr {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 16px;
+      gap: 20px;
+      padding: 18px 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(196,184,164,0.12);
+      border-radius: 8px;
     }
     .contact-qr-card {
+      flex-shrink: 0;
       background: #fff;
-      padding: 16px;
-      border-radius: 10px;
-      box-shadow: 0 12px 44px rgba(0,0,0,0.28);
+      padding: 9px;
+      border-radius: 7px;
+      line-height: 0;
     }
-    .contact-qr-card img { width: 148px; height: 148px; display: block; }
-    .contact-qr-caption {
+    .contact-qr-card img { width: 104px; height: 104px; display: block; }
+    .contact-qr-text { display: flex; flex-direction: column; gap: 6px; }
+    .contact-qr-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.1;
+    }
+    .contact-qr-sub {
       font-size: 10px;
       font-weight: 500;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--gold);
-      text-align: center;
     }
 
-    .wa-icon {
-      width: 19px;
-      height: 19px;
-      fill: #25D366;
-      vertical-align: -3px;
-      margin-right: 9px;
-      flex-shrink: 0;
+    @media (max-width: 860px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 44px; }
+      .contact-aside { max-width: 460px; }
     }
 
     /* ── LOCATION ── */
@@ -770,8 +789,8 @@
 
     /* ── CONTACT FORM ── */
     .contact-form {
-      max-width: 580px;
-      margin-top: 8px;
+      max-width: none;
+      margin-top: 0;
     }
 
     .form-row {
@@ -1032,7 +1051,6 @@
       .injectables-grid { grid-template-columns: 1fr; }
       .about-stats { grid-template-columns: 1fr 1fr; }
       .hero-name { font-size: clamp(44px, 12vw, 64px); }
-      .contact-item { min-width: 100%; padding-right: 0; }
     }
 
     /* ── HERO LOAD ANIMATIONS ── */
@@ -1486,53 +1504,77 @@
       <h2 class="section-heading fade-up">Let's talk</h2>
       <p class="contact-body fade-up">Whether you're interested in facial aesthetic treatments, or looking for caring and personalised dentistry — or a practice interested in Olesya's experience — please get in touch.</p>
 
-      <div class="contact-reach fade-up">
-        <div class="contact-links">
-          <a class="contact-item" href="tel:+447557884658">
-            <span class="contact-item-label">Call or text</span>
-            <span class="contact-item-value">+44 7557 884658 <span class="contact-item-arrow">→</span></span>
-          </a>
-          <a class="contact-item" href="https://wa.me/447557884658" target="_blank" rel="noopener">
-            <span class="contact-item-label">WhatsApp</span>
-            <span class="contact-item-value"><svg class="wa-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.548 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Message me on WhatsApp <span class="contact-item-arrow">→</span></span>
-          </a>
-          <a class="contact-item" href="mailto:hello@olesyapavlova.co.uk">
-            <span class="contact-item-label">Email</span>
-            <span class="contact-item-value">hello@olesyapavlova.co.uk <span class="contact-item-arrow">→</span></span>
-          </a>
-        </div>
-        <div class="contact-qr">
-          <div class="contact-qr-card">
-            <img src="contact-qr.svg" alt="QR code — scan to save Mrs Olesya Pavlova's contact details" width="148" height="148" />
+      <div class="contact-grid fade-up">
+        <div class="contact-aside">
+          <ul class="contact-methods">
+            <li>
+              <a class="contact-method" href="tel:+447557884658">
+                <span class="contact-method-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-gold" d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+                </span>
+                <span class="contact-method-text">
+                  <span class="contact-method-label">Call or text</span>
+                  <span class="contact-method-value">+44 7557 884658</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="contact-method" href="https://wa.me/447557884658" target="_blank" rel="noopener">
+                <span class="contact-method-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-wa" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.548 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </span>
+                <span class="contact-method-text">
+                  <span class="contact-method-label">WhatsApp</span>
+                  <span class="contact-method-value">Message me directly</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="contact-method" href="mailto:hello@olesyapavlova.co.uk">
+                <span class="contact-method-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-gold" d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path class="i-gold" d="M22 6.5l-10 7L2 6.5"/></svg>
+                </span>
+                <span class="contact-method-text">
+                  <span class="contact-method-label">Email</span>
+                  <span class="contact-method-value">hello@olesyapavlova.co.uk</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <div class="contact-qr">
+            <div class="contact-qr-card">
+              <img src="contact-qr.svg" alt="QR code — scan to save Mrs Olesya Pavlova's contact details" width="104" height="104" />
+            </div>
+            <span class="contact-qr-text">
+              <span class="contact-qr-title">Save my details</span>
+              <span class="contact-qr-sub">Scan with your camera</span>
+            </span>
           </div>
-          <span class="contact-qr-caption">Scan to save my details</span>
         </div>
+
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-name">Name</label>
+              <input type="text" id="cf-name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="cf-email">Email</label>
+              <input type="email" id="cf-email" name="email" placeholder="your@email.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cf-phone">Phone <span style="opacity:0.4;font-size:9px;letter-spacing:0">(optional)</span></label>
+            <input type="tel" id="cf-phone" name="phone" placeholder="+44 7700 000000" />
+          </div>
+          <div class="form-group">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" placeholder="How can I help?" required></textarea>
+          </div>
+          <button type="submit" class="form-submit" id="formSubmit">Send message</button>
+          <p class="form-status" id="formStatus"></p>
+        </form>
       </div>
-
-      <form class="contact-form fade-up" id="contactForm" novalidate>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="cf-name">Name</label>
-            <input type="text" id="cf-name" name="name" placeholder="Your name" required />
-          </div>
-          <div class="form-group">
-            <label for="cf-email">Email</label>
-            <input type="email" id="cf-email" name="email" placeholder="your@email.com" required />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="cf-phone">Phone <span style="opacity:0.4;font-size:9px;letter-spacing:0">(optional)</span></label>
-          <input type="tel" id="cf-phone" name="phone" placeholder="+44 7700 000000" />
-        </div>
-        <div class="form-group">
-          <label for="cf-message">Message</label>
-          <textarea id="cf-message" name="message" placeholder="How can I help?" required></textarea>
-        </div>
-        <button type="submit" class="form-submit" id="formSubmit">Send message</button>
-        <p class="form-status" id="formStatus"></p>
-      </form>
-
-      <p class="contact-availability fade-up" style="margin-top:44px">hello@olesyapavlova.co.uk</p>
     </div>
   </section>
 
