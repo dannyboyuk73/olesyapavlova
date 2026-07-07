@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mrs Olesya Pavlova – Dentist & Facial Aesthetics, Surrey</title>
+  <title>Dentist-Led Facial Aesthetics in Surrey — Mrs Olesya Pavlova</title>
+  <meta name="description" content="Dentist-led facial aesthetics in Surrey. Subtle anti-wrinkle and dermal filler treatments from Mrs Olesya Pavlova, a GDC-registered dentist with over 20 years of clinical experience." />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,6 +30,8 @@
       font-size: 16px;
       line-height: 1.7;
     }
+
+    section[id], div[id] { scroll-margin-top: 84px; }
 
     /* ── SCROLL ANIMATIONS ── */
     .fade-up {
@@ -75,6 +78,7 @@
       display: flex;
       gap: 32px;
       list-style: none;
+      align-items: center;
     }
 
     .nav-links a {
@@ -87,6 +91,14 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      color: var(--ink) !important;
+      background: var(--gold);
+      padding: 9px 18px;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--gold-lt); color: var(--ink) !important; }
 
     /* Hamburger */
     .nav-toggle {
@@ -137,21 +149,19 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center;
-      opacity: 1;
+      object-position: 50% 12%;
+      filter: saturate(0.82) contrast(1.02);
     }
 
-    /* Gradient overlay for text legibility — preserves photo at full strength */
+    /* Warm, deeper overlay — unifies the photo with the palette and
+       keeps the name legible without reading as a dental surgery */
     .hero-left::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        170deg,
-        rgba(27, 46, 44, 0.18) 0%,
-        rgba(27, 46, 44, 0.05) 45%,
-        rgba(27, 46, 44, 0.80) 100%
-      );
+      background:
+        linear-gradient(175deg, rgba(43,58,56,0.30) 0%, rgba(43,58,56,0.10) 38%, rgba(26,36,34,0.88) 100%),
+        linear-gradient(90deg, rgba(43,58,56,0.28) 0%, rgba(43,58,56,0) 40%);
       z-index: 1;
     }
 
@@ -164,25 +174,20 @@
       font-family: 'DM Sans', sans-serif;
       font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--white);
-      margin-top: 14px;
-      margin-bottom: 0;
+      margin-top: 16px;
     }
 
     .hero-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(52px, 6.5vw, 88px);
+      font-size: clamp(48px, 6vw, 80px);
       font-weight: 300;
       color: var(--white);
       line-height: 1.0;
     }
-
-    .hero-name em {
-      font-style: italic;
-      color: var(--white);
-    }
+    .hero-name em { font-style: italic; }
 
     .hero-right {
       background: var(--cream);
@@ -192,27 +197,32 @@
       padding: 100px 70px 80px;
     }
 
+    .hero-kicker {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 22px;
+    }
+
     .hero-tagline {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(24px, 2.8vw, 36px);
+      font-size: clamp(32px, 4vw, 52px);
       font-weight: 300;
       color: var(--deep);
-      line-height: 1.3;
-      margin-bottom: 32px;
+      line-height: 1.12;
+      margin-bottom: 26px;
     }
-
-    .hero-tagline em {
-      font-style: italic;
-      color: var(--mist);
-    }
+    .hero-tagline em { font-style: italic; color: var(--mist); }
 
     .hero-intro {
-      font-size: 15px;
+      font-size: 15.5px;
       font-weight: 300;
       color: #4a5755;
       line-height: 1.85;
-      max-width: 420px;
-      margin-bottom: 48px;
+      max-width: 440px;
+      margin-bottom: 40px;
     }
 
     .cta-bar {
@@ -223,33 +233,28 @@
 
     .btn {
       display: inline-block;
-      padding: 14px 32px;
+      padding: 15px 30px;
       font-size: 12px;
       font-weight: 500;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       text-decoration: none;
       border-radius: 2px;
       transition: all 0.25s ease;
+      cursor: pointer;
     }
 
-    .btn-primary {
-      background: var(--deep);
-      color: var(--white);
-    }
-    .btn-primary:hover { background: var(--gold); }
+    .btn-primary { background: var(--gold); color: var(--ink); }
+    .btn-primary:hover { background: var(--gold-lt); }
 
-    .btn-ghost {
-      border: 1px solid var(--stone);
-      color: var(--deep);
-    }
-    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); background: transparent; }
+    .btn-ghost { border: 1px solid var(--stone); color: var(--deep); }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
 
-    .btn-gold {
-      background: var(--gold);
-      color: var(--ink);
-    }
+    .btn-gold { background: var(--gold); color: var(--ink); }
     .btn-gold:hover { background: var(--gold-lt); }
+
+    .btn-dark { background: var(--deep); color: var(--white); }
+    .btn-dark:hover { background: var(--gold); color: var(--ink); }
 
     /* ── GOLD DIVIDER ── */
     .gold-line {
@@ -261,12 +266,9 @@
     }
 
     /* ── SECTION SHELL ── */
-    section { padding: 90px 40px; }
+    section { padding: 96px 40px; }
 
-    .section-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
 
     .section-label {
       font-size: 11px;
@@ -287,16 +289,240 @@
       margin-bottom: 52px;
     }
 
+    /* ── TRUST STRIP ── */
+    .trust-strip { background: var(--ink); padding: 20px 40px; }
+    .trust-strip-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch;
+    }
+    .trust-strip-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 26px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--stone);
+      text-align: center;
+      position: relative;
+    }
+    .trust-strip-item + .trust-strip-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 50%;
+      transform: translateY(-50%);
+      height: 22px;
+      width: 1px;
+      background: rgba(196,184,164,0.16);
+    }
+    .trust-strip-item svg { width: 15px; height: 15px; stroke: var(--gold); flex-shrink: 0; }
+
+    /* ── WHY A DENTIST ── */
+    .why { background: var(--ink); padding: 100px 40px; }
+    .why .section-label { text-align: left; }
+    .why .section-heading { color: var(--cream); margin-bottom: 26px; }
+    .why-lead {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(21px, 2.6vw, 30px);
+      font-weight: 300;
+      color: var(--stone);
+      line-height: 1.5;
+      max-width: 780px;
+      margin-bottom: 64px;
+    }
+    .why-lead em { color: var(--gold); font-style: italic; }
+    .why-pillars {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+    .why-pillar {
+      padding: 40px 36px;
+      background: rgba(255,255,255,0.025);
+      border-top: 2px solid rgba(184,151,90,0.3);
+    }
+    .why-pillar-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 21px;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+    .why-pillar-body {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(196,184,164,0.72);
+      line-height: 1.8;
+    }
+    .why-note {
+      margin-top: 40px;
+      font-size: 12.5px;
+      font-weight: 300;
+      color: rgba(196,184,164,0.5);
+      line-height: 1.7;
+      max-width: 820px;
+    }
+    .why-note a { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(184,151,90,0.4); }
+
+    /* ── TREATMENTS BY GOAL ── */
+    .treatments { background: var(--warm); }
+    .treatments-intro {
+      font-size: 15px;
+      font-weight: 300;
+      color: #556360;
+      line-height: 1.85;
+      max-width: 620px;
+      margin-top: -32px;
+      margin-bottom: 52px;
+    }
+    .treat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .treat-card {
+      background: var(--white);
+      padding: 32px 30px 30px;
+      border-top: 2px solid var(--gold);
+      border-radius: 3px;
+      display: flex;
+      flex-direction: column;
+    }
+    .treat-goal-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .treat-goal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--deep);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .treat-goal-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: #6a7d7a;
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+    .treat-list { list-style: none; margin-top: 4px; }
+    .treat-list li {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(43,58,56,0.09);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--deep);
+      position: relative;
+    }
+    .treat-list li:last-child { border-bottom: none; }
+    .treat-price {
+      color: var(--gold);
+      font-weight: 500;
+      font-size: 13.5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .treat-note {
+      margin-top: 16px;
+      font-size: 11.5px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--mist);
+    }
+    .treat-foot {
+      margin-top: 44px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .treat-foot-note {
+      font-size: 13px;
+      font-weight: 300;
+      color: #6a7d7a;
+      line-height: 1.7;
+      max-width: 460px;
+    }
+    @media (hover: hover) {
+      .treat-list li[data-tip] { cursor: help; }
+      .treat-list li[data-tip]:hover::after {
+        content: attr(data-tip);
+        position: absolute;
+        bottom: calc(100% + 8px);
+        left: 0; right: 0;
+        background: var(--deep);
+        color: var(--cream);
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 1.6;
+        padding: 11px 14px;
+        border-radius: 3px;
+        box-shadow: 0 8px 26px rgba(0,0,0,0.28);
+        z-index: 30;
+        pointer-events: none;
+      }
+    }
+
+    /* ── PROCESS ── */
+    .process { background: var(--cream); }
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+    .process-step {
+      background: var(--white);
+      padding: 38px 30px;
+      position: relative;
+    }
+    .process-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+    .process-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 21px;
+      font-weight: 400;
+      color: var(--deep);
+      margin-bottom: 10px;
+    }
+    .process-desc {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: #6a7d7a;
+      line-height: 1.75;
+    }
+
     /* ── ABOUT ── */
     .about { background: var(--white); }
-
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 64px;
       align-items: start;
     }
-
     .about-body p {
       font-size: 15px;
       font-weight: 300;
@@ -305,29 +531,21 @@
       margin-bottom: 22px;
     }
     .about-body p:last-child { margin-bottom: 0; }
-
     .about-stats {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2px;
     }
-
-    .stat-card {
-      background: var(--warm);
-      padding: 34px 28px;
-      transition: background 0.2s;
-    }
+    .stat-card { background: var(--warm); padding: 32px 26px; transition: background 0.2s; }
     .stat-card:hover { background: var(--cream); }
-
     .stat-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 48px;
+      font-size: 44px;
       font-weight: 300;
       color: var(--deep);
       line-height: 1;
       margin-bottom: 10px;
     }
-
     .stat-label {
       font-size: 11px;
       font-weight: 500;
@@ -340,7 +558,6 @@
     /* ── PRESS ── */
     .press { background: var(--deep); }
     .press .section-heading { color: var(--cream); }
-
     .press-card {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -353,7 +570,6 @@
       transition: background 0.25s;
     }
     .press-card:hover { background: rgba(255,255,255,0.06); }
-
     .press-publication {
       font-size: 11px;
       font-weight: 500;
@@ -362,7 +578,6 @@
       color: var(--gold);
       margin-bottom: 18px;
     }
-
     .press-quote {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(19px, 2.2vw, 27px);
@@ -372,14 +587,7 @@
       line-height: 1.45;
       margin-bottom: 20px;
     }
-
-    .press-desc {
-      font-size: 14px;
-      font-weight: 300;
-      color: #a0b0ae;
-      line-height: 1.8;
-    }
-
+    .press-desc { font-size: 14px; font-weight: 300; color: #a0b0ae; line-height: 1.8; }
     .press-link {
       display: inline-flex;
       align-items: center;
@@ -397,140 +605,17 @@
     }
     .press-link:hover { border-color: var(--gold); color: var(--gold-lt); }
 
-    /* ── EXPERTISE ── */
-    .expertise { background: var(--cream); }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2px;
-    }
-
-    .skill-card {
-      background: var(--white);
-      padding: 38px 34px;
-      transition: transform 0.25s ease, background 0.2s;
-    }
-    .skill-card:hover { transform: translateY(-4px); background: #fdfcfa; }
-
-    .skill-icon {
-      width: 36px;
-      height: 36px;
-      color: var(--gold);
-      margin-bottom: 22px;
-      opacity: 0.9;
-    }
-    .skill-icon svg { width: 100%; height: 100%; }
-
-    .skill-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 21px;
-      font-weight: 400;
-      color: var(--deep);
-      margin-bottom: 10px;
-      line-height: 1.2;
-    }
-
-    .skill-desc {
-      font-size: 13.5px;
-      font-weight: 300;
-      color: #6a7d7a;
-      line-height: 1.75;
-    }
-
-    /* ── CAREER TIMELINE ── */
-    .career { background: var(--deep); }
-    .career .section-heading { color: var(--cream); }
-
-    .timeline {
-      position: relative;
-      padding-left: 2px;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 8px;
-      bottom: 0;
-      width: 1px;
-      background: linear-gradient(180deg, var(--gold) 0%, rgba(184,151,90,0.1) 100%);
-    }
-
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 40px;
-      margin-bottom: 52px;
-      padding-left: 36px;
-      position: relative;
-    }
-    .timeline-item:last-child { margin-bottom: 0; }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -4px;
-      top: 7px;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--gold);
-      box-shadow: 0 0 0 3px rgba(184,151,90,0.18);
-    }
-
-    .tl-date {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gold);
-      padding-top: 5px;
-      line-height: 1.5;
-    }
-
-    .tl-role {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 23px;
-      font-weight: 400;
-      color: var(--white);
-      margin-bottom: 4px;
-      line-height: 1.2;
-    }
-
-    .tl-place {
-      font-size: 12.5px;
-      font-weight: 500;
-      color: var(--stone);
-      margin-bottom: 14px;
-      letter-spacing: 0.04em;
-    }
-
-    .tl-desc {
-      font-size: 14px;
-      font-weight: 300;
-      color: #a0b0ae;
-      line-height: 1.8;
-    }
-
     /* ── EDUCATION ── */
     .education { background: var(--warm); }
-
-    .edu-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-    }
-
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
     .edu-card {
       background: var(--white);
-      padding: 30px 36px;
+      padding: 28px 34px;
       border-left: 2px solid transparent;
       transition: border-color 0.2s ease, background 0.2s;
     }
     .edu-card:hover { border-left-color: rgba(184,151,90,0.5); }
     .edu-card.highlight { border-left-color: var(--gold); background: var(--cream); }
-
     .edu-year {
       font-size: 10px;
       font-weight: 500;
@@ -540,7 +625,6 @@
       margin-bottom: 10px;
       display: block;
     }
-
     .edu-qual {
       font-family: 'Cormorant Garamond', serif;
       font-size: 19px;
@@ -549,69 +633,40 @@
       margin-bottom: 5px;
       line-height: 1.3;
     }
-
-    .edu-inst {
-      font-size: 12.5px;
-      color: var(--mist);
-      font-weight: 300;
-    }
-
-    /* ── TRUST ── */
-    .trust { background: var(--ink); padding: 100px 0; }
-    .trust-statement {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(24px, 3.8vw, 44px);
-      font-weight: 300;
-      font-style: italic;
-      color: var(--cream);
-      line-height: 1.35;
-      text-align: center;
-      max-width: 820px;
-      margin: 0 auto 72px;
-    }
-    .trust-statement em { color: var(--gold); font-style: normal; }
-    .trust-pillars {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-    }
-    .trust-pillar {
-      padding: 36px 28px;
-      background: rgba(255,255,255,0.025);
-      border-top: 2px solid rgba(184,151,90,0.25);
-    }
-    .trust-pillar-title {
-      font-size: 10px;
+    .edu-inst { font-size: 12.5px; color: var(--mist); font-weight: 300; }
+    .edu-more { margin-top: 2px; }
+    .edu-more summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 22px 0 4px;
+      font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
     }
-    .trust-pillar-body {
-      font-size: 13.5px;
-      font-weight: 300;
-      color: rgba(196,184,164,0.65);
-      line-height: 1.75;
+    .edu-more summary::-webkit-details-marker { display: none; }
+    .edu-more summary::after {
+      content: '+';
+      font-size: 16px;
+      line-height: 1;
     }
-    @media (max-width: 900px) {
-      .trust-pillars { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 540px) {
-      .trust-pillars { grid-template-columns: 1fr; }
-    }
+    .edu-more[open] summary::after { content: '–'; }
+    .edu-more summary:hover { color: var(--gold-lt); }
 
     /* ── CONTACT ── */
     .contact { background: var(--deep); padding-bottom: 120px; }
     .contact .section-heading { color: var(--cream); }
-
     .contact-body {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(20px, 2.5vw, 30px);
       font-weight: 300;
       color: var(--stone);
       line-height: 1.55;
-      max-width: 620px;
+      max-width: 640px;
       margin-bottom: 52px;
     }
 
@@ -621,9 +676,7 @@
       gap: 72px;
       align-items: start;
     }
-
     .contact-aside { display: flex; flex-direction: column; }
-
     .contact-methods {
       list-style: none;
       margin: 0 0 32px;
@@ -639,11 +692,7 @@
       border-bottom: 1px solid rgba(196,184,164,0.14);
       transition: padding-left 0.25s ease, background 0.25s ease;
     }
-    .contact-method:hover {
-      padding-left: 14px;
-      background: rgba(255,255,255,0.02);
-    }
-
+    .contact-method:hover { padding-left: 14px; background: rgba(255,255,255,0.02); }
     .contact-method-icon {
       flex-shrink: 0;
       width: 46px;
@@ -655,26 +704,11 @@
       justify-content: center;
       transition: border-color 0.25s, background 0.25s;
     }
-    .contact-method:hover .contact-method-icon {
-      border-color: var(--gold);
-      background: rgba(184,151,90,0.1);
-    }
-    .contact-method-icon svg {
-      width: 21px;
-      height: 21px;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
+    .contact-method:hover .contact-method-icon { border-color: var(--gold); background: rgba(184,151,90,0.1); }
+    .contact-method-icon svg { width: 21px; height: 21px; fill: none; stroke-linecap: round; stroke-linejoin: round; }
     .contact-method-icon .i-gold { stroke: var(--gold); stroke-width: 1.7; }
     .contact-method-icon .i-wa { fill: #25D366; stroke: none; }
-
-    .contact-method-text {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      min-width: 0;
-    }
+    .contact-method-text { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
     .contact-method-label {
       font-size: 10px;
       font-weight: 500;
@@ -689,7 +723,6 @@
       color: var(--cream);
       line-height: 1.15;
     }
-
     .contact-qr {
       display: flex;
       align-items: center;
@@ -699,13 +732,7 @@
       border: 1px solid rgba(196,184,164,0.12);
       border-radius: 8px;
     }
-    .contact-qr-card {
-      flex-shrink: 0;
-      background: #fff;
-      padding: 9px;
-      border-radius: 7px;
-      line-height: 0;
-    }
+    .contact-qr-card { flex-shrink: 0; background: #fff; padding: 9px; border-radius: 7px; line-height: 0; }
     .contact-qr-card img { width: 104px; height: 104px; display: block; }
     .contact-qr-text { display: flex; flex-direction: column; gap: 6px; }
     .contact-qr-title {
@@ -734,11 +761,10 @@
       grid-template-columns: 1fr 2fr;
       gap: 52px;
       align-items: start;
-      margin-top: 60px;
+      margin-top: 64px;
       padding-top: 52px;
       border-top: 1px solid rgba(196,184,164,0.1);
     }
-
     .location-label {
       font-size: 10px;
       font-weight: 500;
@@ -748,7 +774,6 @@
       margin-bottom: 16px;
       display: block;
     }
-
     .location-address {
       font-family: 'Cormorant Garamond', serif;
       font-size: 22px;
@@ -757,7 +782,6 @@
       line-height: 1.5;
       margin-bottom: 20px;
     }
-
     .location-directions {
       display: inline-flex;
       align-items: center;
@@ -773,7 +797,6 @@
       transition: border-color 0.2s, color 0.2s;
     }
     .location-directions:hover { border-color: var(--gold); color: var(--gold-lt); }
-
     .location-map {
       width: 100%;
       height: 300px;
@@ -782,31 +805,12 @@
       filter: grayscale(20%) contrast(95%);
       opacity: 0.88;
     }
-
-    @media (max-width: 900px) {
-      .location-grid { grid-template-columns: 1fr; gap: 32px; }
-    }
+    @media (max-width: 900px) { .location-grid { grid-template-columns: 1fr; gap: 32px; } }
 
     /* ── CONTACT FORM ── */
-    .contact-form {
-      max-width: none;
-      margin-top: 0;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-      margin-bottom: 12px;
-    }
-
+    .contact-form { max-width: none; margin-top: 0; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .form-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 12px; }
     .form-group label {
       font-size: 10px;
       font-weight: 500;
@@ -814,7 +818,6 @@
       text-transform: uppercase;
       color: var(--gold);
     }
-
     .form-group input,
     .form-group textarea {
       background: rgba(255,255,255,0.05);
@@ -829,18 +832,11 @@
       transition: border-color 0.2s;
       width: 100%;
     }
-
     .form-group input::placeholder,
     .form-group textarea::placeholder { color: rgba(196,184,164,0.3); }
-
     .form-group input:focus,
     .form-group textarea:focus { border-color: rgba(184,151,90,0.5); }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-
+    .form-group textarea { resize: vertical; min-height: 120px; }
     .form-submit {
       display: inline-block;
       padding: 14px 40px;
@@ -859,19 +855,10 @@
     }
     .form-submit:hover { background: var(--gold-lt); }
     .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
-
-    .form-status {
-      margin-top: 16px;
-      font-size: 13px;
-      font-weight: 300;
-      display: none;
-    }
+    .form-status { margin-top: 16px; font-size: 13px; font-weight: 300; display: none; }
     .form-status.success { color: #7ec8a4; display: block; }
     .form-status.error   { color: #e08080; display: block; }
-
-    @media (max-width: 600px) {
-      .form-row { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
 
     /* ── FOOTER ── */
     footer {
@@ -883,7 +870,6 @@
       flex-wrap: wrap;
       gap: 12px;
     }
-
     .footer-name {
       font-family: 'Cormorant Garamond', serif;
       font-size: 17px;
@@ -891,7 +877,6 @@
       color: var(--stone);
       letter-spacing: 0.06em;
     }
-
     .footer-note {
       font-size: 11px;
       color: rgba(138,158,154,0.45);
@@ -899,139 +884,33 @@
       text-transform: uppercase;
     }
 
-    /* ── INJECTABLES ── */
-    .injectables { background: var(--deep); }
-    .injectables .section-heading { color: var(--cream); }
-
-    .injectables-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-    }
-
-    .inject-cat {
-      background: rgba(255,255,255,0.04);
-      padding: 32px 26px 36px;
-      transition: background 0.2s;
-    }
-    .inject-cat:hover { background: rgba(255,255,255,0.07); }
-
-    .inject-cat-label {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .inject-cat-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20px;
-      font-weight: 400;
-      color: var(--cream);
-      line-height: 1.25;
-      margin-bottom: 20px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid rgba(196,184,164,0.12);
-    }
-
-    .inject-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .inject-list li {
-      font-size: 13px;
-      font-weight: 300;
-      color: #9fb0ad;
-      line-height: 1.5;
-      padding: 6px 0;
-      border-bottom: 1px solid rgba(196,184,164,0.06);
-      display: flex;
-      align-items: baseline;
-      gap: 9px;
-      position: relative;
-      cursor: default;
-    }
-    .inject-list li:last-child { border-bottom: none; }
-    .inject-list li::before {
-      content: '–';
-      color: var(--gold);
-      opacity: 0.55;
-      font-size: 11px;
-      flex-shrink: 0;
-    }
-    .inject-price {
-      margin-left: auto;
-      padding-left: 12px;
-      color: var(--gold);
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.03em;
-      opacity: 0.75;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .inject-pkg-note {
-      margin-top: 10px;
-      font-size: 11px;
-      font-weight: 300;
-      color: rgba(196,184,164,0.45);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    @media (hover: hover) {
-      .inject-list li[data-tip]:hover { color: var(--cream); }
-      .inject-list li[data-tip]:hover::after {
-        content: attr(data-tip);
-        position: absolute;
-        bottom: calc(100% + 10px);
-        left: 0;
-        background: var(--ink);
-        color: var(--cream);
-        font-family: 'DM Sans', sans-serif;
-        font-size: 12px;
-        font-weight: 300;
-        line-height: 1.6;
-        letter-spacing: 0;
-        text-transform: none;
-        padding: 10px 14px;
-        width: 240px;
-        border-radius: 2px;
-        border: 1px solid rgba(184,151,90,0.35);
-        box-shadow: 0 6px 24px rgba(0,0,0,0.5);
-        z-index: 30;
-        pointer-events: none;
-      }
-    }
+    /* ── STICKY MOBILE CTA ── */
+    .mobile-cta { display: none; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; min-height: unset; }
-      .hero-left { min-height: 55vh; padding: 60px 40px 52px; }
-      .hero-right { padding: 60px 40px; }
+      .hero-left { order: 2; min-height: 46vh; padding: 54px 40px 46px; }
+      .hero-right { order: 1; padding: 96px 40px 56px; }
       .about-grid { grid-template-columns: 1fr; gap: 44px; }
       .edu-grid { grid-template-columns: 1fr; }
-      .timeline-item { grid-template-columns: 1fr; gap: 8px; }
       nav { padding: 18px 24px; }
       .nav-links { gap: 22px; }
-      section { padding: 72px 24px; }
+      section { padding: 76px 24px; }
+      .why { padding: 80px 24px; }
       .press-card { grid-template-columns: 1fr; gap: 28px; }
-      .injectables-grid { grid-template-columns: 1fr 1fr; }
+      .treat-grid { grid-template-columns: 1fr 1fr; }
+      .process-grid { grid-template-columns: 1fr 1fr; }
+      .why-pillars { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 600px) {
       .nav-toggle { display: flex; }
-
       .nav-links {
         display: none;
         position: absolute;
         top: 100%;
-        left: 0;
-        right: 0;
+        left: 0; right: 0;
         background: rgba(27, 36, 34, 0.98);
         flex-direction: column;
         padding: 18px 28px 24px;
@@ -1039,6 +918,7 @@
         border-top: 1px solid rgba(196,184,164,0.1);
       }
       .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; }
       .nav-links li a {
         display: block;
         padding: 10px 0;
@@ -1046,11 +926,40 @@
         border-bottom: 1px solid rgba(196,184,164,0.08);
       }
       .nav-links li:last-child a { border-bottom: none; }
+      .nav-cta { text-align: center; margin-top: 6px; }
 
-      .skills-grid { grid-template-columns: 1fr; }
-      .injectables-grid { grid-template-columns: 1fr; }
+      .treat-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
+      .why-pillars { grid-template-columns: 1fr; }
       .about-stats { grid-template-columns: 1fr 1fr; }
-      .hero-name { font-size: clamp(44px, 12vw, 64px); }
+      .hero-name { font-size: clamp(44px, 12vw, 60px); }
+    }
+
+    @media (max-width: 700px) {
+      .mobile-cta {
+        display: flex;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 95;
+        box-shadow: 0 -4px 22px rgba(0,0,0,0.28);
+      }
+      .mobile-cta a {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 15px 10px;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+      .mobile-cta .mc-book { background: var(--gold); color: var(--ink); }
+      .mobile-cta .mc-wa { background: #25D366; color: #fff; }
+      .mobile-cta .mc-wa svg { width: 17px; height: 17px; fill: #fff; }
+      body { padding-bottom: 54px; }
     }
 
     /* ── HERO LOAD ANIMATIONS ── */
@@ -1060,9 +969,10 @@
     }
     .hero-name-block { animation: fadeUp 1s ease both; }
     .hero-right > * { animation: fadeUp 0.9s ease both; }
-    .hero-right > *:nth-child(1) { animation-delay: 0.2s; }
-    .hero-right > *:nth-child(2) { animation-delay: 0.35s; }
-    .hero-right > *:nth-child(3) { animation-delay: 0.5s; }
+    .hero-right > *:nth-child(1) { animation-delay: 0.15s; }
+    .hero-right > *:nth-child(2) { animation-delay: 0.3s; }
+    .hero-right > *:nth-child(3) { animation-delay: 0.45s; }
+    .hero-right > *:nth-child(4) { animation-delay: 0.6s; }
   </style>
 </head>
 <body>
@@ -1071,13 +981,11 @@
   <nav>
     <a href="#" class="nav-brand">Olesya <span>Pavlova</span></a>
     <ul class="nav-links" id="navLinks">
+      <li><a href="#treatments">Treatments</a></li>
+      <li><a href="#why">Why a dentist</a></li>
+      <li><a href="#process">Process</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#injectables">Aesthetics</a></li>
-      <li><a href="#expertise">Dental</a></li>
-      <li><a href="#press">Press</a></li>
-      <li><a href="#career">Career</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="nav-cta">Book a consultation</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -1087,55 +995,205 @@
   <!-- HERO -->
   <div class="hero">
     <div class="hero-left">
-      <img src="olesya.jpg" alt="Mrs Olesya Pavlova" class="hero-photo" />
+      <img src="olesya.jpg" alt="Mrs Olesya Pavlova, GDC-registered dentist and aesthetic practitioner in Surrey" class="hero-photo" />
       <div class="hero-name-block">
-        <h1 class="hero-name">Mrs<br/><em>Olesya</em><br/>Pavlova</h1>
-        <p class="hero-eyebrow">GDC Registered Dentist</p>
+        <div class="hero-name">Mrs<br/><em>Olesya</em><br/>Pavlova</div>
+        <p class="hero-eyebrow">GDC-Registered Dentist · 20+ Years</p>
       </div>
     </div>
 
     <div class="hero-right">
-      <p class="hero-tagline">Expert dentistry<br/><em>& facial aesthetics.</em></p>
+      <p class="hero-kicker">Anti-wrinkle · Dermal filler · Facial balancing</p>
+      <h1 class="hero-tagline">Dentist-led facial aesthetics <em>in Surrey.</em></h1>
       <p class="hero-intro">
-        With over 20 years of clinical experience, Mrs Olesya Pavlova is a GDC-registered dentist practising across Surrey. She also offers a full range of anti-wrinkle and dermal filler treatments — the precision and anatomical knowledge she brings to dentistry applied to every aesthetic result.
+        Subtle anti-wrinkle and dermal filler treatments from a GDC-registered dentist with over 20 years of clinical experience — the facial-anatomy knowledge and medical judgement your face deserves.
       </p>
       <div class="cta-bar">
-        <a href="#contact" class="btn btn-primary">Get in touch</a>
-        <a href="#injectables" class="btn btn-ghost">Facial Aesthetics</a>
-        <a href="#expertise" class="btn btn-ghost">Dental Expertise</a>
+        <a href="#contact" class="btn btn-primary">Book a facial aesthetics consultation</a>
+        <a href="#why" class="btn btn-ghost">Why choose a dentist?</a>
       </div>
     </div>
   </div>
 
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
+    <div class="trust-strip-inner">
+      <div class="trust-strip-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>GDC Registered</div>
+      <div class="trust-strip-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>20+ Years Clinical Experience</div>
+      <div class="trust-strip-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Facial Anatomy Expertise</div>
+      <div class="trust-strip-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Aesthetics-Trained (BAA)</div>
+      <div class="trust-strip-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Surrey Clinic</div>
+    </div>
+  </div>
+
+  <!-- WHY A DENTIST -->
+  <section class="why" id="why">
+    <div class="section-inner">
+      <span class="section-label fade-up">Why a dentist</span>
+      <h2 class="section-heading fade-up">Why choose a dentist<br/>for facial aesthetics?</h2>
+      <p class="why-lead fade-up">Your face deserves medical judgement, not just a short course. Olesya brings over 20 years of clinical dental experience, daily injection skill, and detailed facial-anatomy knowledge to <em>every</em> treatment.</p>
+
+      <div class="why-pillars">
+        <div class="why-pillar fade-up">
+          <div class="why-pillar-title">Injections, every single day</div>
+          <p class="why-pillar-body">Administering injections is a core part of clinical dentistry. Over twenty years, Olesya has placed many thousands — bringing the anatomical familiarity and steady hand that only come from daily practice.</p>
+        </div>
+        <div class="why-pillar fade-up">
+          <div class="why-pillar-title">Trained in facial anatomy</div>
+          <p class="why-pillar-body">The muscles, nerves, blood vessels and tissue planes of the face are studied in depth throughout dental training — and worked with every day in the chair. That knowledge guides safe, precise placement, and matters because poorly placed filler can cause serious complications.</p>
+        </div>
+        <div class="why-pillar fade-up">
+          <div class="why-pillar-title">A regulated healthcare professional</div>
+          <p class="why-pillar-body">GDC-registered dentists work under strict clinical governance — ongoing education, annual appraisal and full professional indemnity. The NHS advises checking your practitioner's training, qualifications and insurance before any cosmetic procedure.</p>
+        </div>
+        <div class="why-pillar fade-up">
+          <div class="why-pillar-title">Prescribed, not just performed</div>
+          <p class="why-pillar-body">Botulinum toxin (anti-wrinkle) is a prescription-only medicine that should be prescribed after a consultation with a qualified healthcare professional. As a dentist, Olesya can properly assess your suitability and medical history before any treatment.</p>
+        </div>
+      </div>
+
+      <p class="why-note fade-up">Guidance from the <a href="https://www.nhs.uk/tests-and-treatments/cosmetic-procedures/advice/choosing-who-will-do-your-procedure/" target="_blank" rel="noopener">NHS on choosing a cosmetic practitioner</a>: always check your practitioner's training, qualifications, insurance and what happens if something goes wrong.</p>
+    </div>
+  </section>
+
+  <div class="gold-line"></div>
+
+  <!-- TREATMENTS BY GOAL -->
+  <section class="treatments" id="treatments">
+    <div class="section-inner">
+      <span class="section-label fade-up">Treatments</span>
+      <h2 class="section-heading fade-up">Treatments by goal</h2>
+      <p class="treatments-intro fade-up">Every face is different. Rather than a menu of products, treatments are grouped by what you might want to achieve — the right approach is agreed together at your consultation.</p>
+
+      <div class="treat-grid">
+
+        <div class="treat-card fade-up">
+          <span class="treat-goal-label">Anti-wrinkle</span>
+          <div class="treat-goal-title">Soften lines &amp; wrinkles</div>
+          <p class="treat-goal-desc">Relax the muscles that create expression lines for a smoother, well-rested look — refreshed, never frozen.</p>
+          <ul class="treat-list">
+            <li data-tip="Smooths the vertical '11' lines between the brows that form from frowning or concentrating.">Frown lines<span class="treat-price">£180</span></li>
+            <li data-tip="Relaxes horizontal creases across the forehead for a smoother, more rested look.">Forehead lines<span class="treat-price">£180</span></li>
+            <li data-tip="Softens the fine lines that fan out from the outer corners of the eyes when smiling.">Crow's feet<span class="treat-price">£180</span></li>
+            <li data-tip="Reduces the small diagonal creases on either side of the nose that appear when smiling.">Bunny lines<span class="treat-price">£160</span></li>
+            <li data-tip="Softens the fine vertical lines around the mouth, sometimes called smoker's or lipstick lines.">Perioral lines<span class="treat-price">£190</span></li>
+            <li data-tip="Smooths an uneven, dimpled or 'orange peel' texture on the chin for a cleaner profile.">Pebbled chin<span class="treat-price">£160</span></li>
+            <li data-tip="Gently elevates the brow arch to open up the eyes and create a fresher appearance.">Brow lift<span class="treat-price">£160</span></li>
+          </ul>
+          <p class="treat-note">2 areas £250 · 3 areas £310</p>
+        </div>
+
+        <div class="treat-card fade-up">
+          <span class="treat-goal-label">Dermal filler</span>
+          <div class="treat-goal-title">Restore volume &amp; smooth folds</div>
+          <p class="treat-goal-desc">Replace volume lost with age and soften deeper folds for a naturally refreshed, lifted result.</p>
+          <ul class="treat-list">
+            <li data-tip="Restores lost volume or enhances cheekbone definition for a lifted, sculpted look.">Cheek volume<span class="treat-price">£295</span></li>
+            <li data-tip="Softens the lines running from the sides of the nose down to the corners of the mouth.">Nasolabial folds<span class="treat-price">£295</span></li>
+            <li data-tip="Fills the downward creases from the corners of the mouth that can give a sad or stern expression.">Marionette lines<span class="treat-price">£295</span></li>
+            <li data-tip="Reduces the hollows and dark shadows beneath the eyes for a fresher, less tired appearance.">Tear troughs<span class="treat-price">£400</span></li>
+          </ul>
+        </div>
+
+        <div class="treat-card fade-up">
+          <span class="treat-goal-label">Lips</span>
+          <div class="treat-goal-title">Lip refinement</div>
+          <p class="treat-goal-desc">Subtle enhancement of shape, border and balance — from a soft flip to natural, considered volume.</p>
+          <ul class="treat-list">
+            <li data-tip="A small amount of relaxant along the upper lip border creates a subtle pout without adding filler.">Lip flip<span class="treat-price">£160</span></li>
+            <li data-tip="Adds natural-looking fullness and definition to the lips, tailored to your desired shape.">Lip volume<span class="treat-price">£310</span></li>
+          </ul>
+        </div>
+
+        <div class="treat-card fade-up">
+          <span class="treat-goal-label">Balancing &amp; contouring</span>
+          <div class="treat-goal-title">Facial balancing</div>
+          <p class="treat-goal-desc">Define and harmonise features — jaw, chin, profile and proportion — for subtle overall balance.</p>
+          <ul class="treat-list">
+            <li data-tip="Reduces the masseter jaw muscles to slim and soften a wide or square face shape.">Jawline slimming<span class="treat-price">£350</span></li>
+            <li data-tip="Defines and sharpens the jawline using filler for a more structured, contoured profile.">Jawline filler<span class="treat-price">£320</span></li>
+            <li data-tip="Adds projection and balance to the chin to improve overall facial harmony and proportion.">Chin filler<span class="treat-price">£295</span></li>
+            <li data-tip="Reshapes and refines the nose without surgery using precise filler placement to smooth bumps or lift the tip.">Non-surgical rhinoplasty<span class="treat-price">£450</span></li>
+            <li data-tip="Prevents the upper lip from lifting too high when smiling, reducing visible gum.">Gummy smile<span class="treat-price">£190</span></li>
+            <li data-tip="Relaxes the vertical cords in the neck for a smoother, more youthful neckline.">Neck &amp; platysmal bands<span class="treat-price">£300</span></li>
+            <li data-tip="A bespoke combination of treatments to soften and enhance, or define and sharpen, the overall face.">Full-face transformation<span class="treat-price">from £700</span></li>
+          </ul>
+        </div>
+
+        <div class="treat-card fade-up">
+          <span class="treat-goal-label">Medical</span>
+          <div class="treat-goal-title">Excessive sweating</div>
+          <p class="treat-goal-desc">Long-lasting relief from uncontrollable underarm sweating (hyperhidrosis) — typically 6–12 months per treatment.</p>
+          <ul class="treat-list">
+            <li data-tip="Small injections into the underarm block the nerve signals that trigger sweat glands, giving relief for 6–12 months.">Underarm treatment<span class="treat-price">£450</span></li>
+          </ul>
+        </div>
+
+        <div class="treat-card fade-up" style="background:var(--deep);border-top-color:var(--gold);justify-content:center;">
+          <div class="treat-goal-title" style="color:var(--cream);">Not sure what you need?</div>
+          <p class="treat-goal-desc" style="color:rgba(196,184,164,0.7);margin-bottom:26px;">That's exactly what a consultation is for. Olesya will assess your face, talk through your goals honestly, and recommend only what will genuinely help.</p>
+          <a href="#contact" class="btn btn-gold" style="align-self:flex-start;">Book a consultation</a>
+        </div>
+
+      </div>
+
+      <div class="treat-foot fade-up">
+        <p class="treat-foot-note">Prices are a guide — final treatment plans and costs are confirmed at your consultation. Anti-wrinkle treatments are prescription-only medicines, prescribed after a medical assessment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="section-inner">
+      <span class="section-label fade-up">What to expect</span>
+      <h2 class="section-heading fade-up">Your journey,<br/>step by step</h2>
+      <div class="process-grid">
+        <div class="process-step fade-up">
+          <div class="process-num">01</div>
+          <div class="process-title">Consultation</div>
+          <p class="process-desc">A relaxed conversation about your goals, a facial assessment, and an honest view of what will — and won't — help. Your suitability and medical history are reviewed first.</p>
+        </div>
+        <div class="process-step fade-up">
+          <div class="process-num">02</div>
+          <div class="process-title">Treatment</div>
+          <p class="process-desc">If it's right for you, treatment is carried out with medical-grade products and precise, anatomy-led placement — often at the same visit, always at your pace.</p>
+        </div>
+        <div class="process-step fade-up">
+          <div class="process-num">03</div>
+          <div class="process-title">Aftercare</div>
+          <p class="process-desc">Clear written aftercare, and Olesya's direct number for any questions in the days that follow. You're never left wondering what's normal.</p>
+        </div>
+        <div class="process-step fade-up">
+          <div class="process-num">04</div>
+          <div class="process-title">Review</div>
+          <p class="process-desc">A follow-up to check your results and make any fine adjustments, so you're genuinely happy with how you look and feel.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ABOUT -->
   <section class="about" id="about">
     <div class="section-inner">
-      <span class="section-label fade-up">About</span>
-      <h2 class="section-heading fade-up">Dentistry &amp; aesthetics<br/>with depth &amp; dedication</h2>
+      <span class="section-label fade-up">About Olesya</span>
+      <h2 class="section-heading fade-up">Two decades of clinical<br/>experience, applied to your face</h2>
       <div class="about-grid">
         <div class="about-body">
           <p class="fade-up">
-            Mrs Olesya Pavlova is a GDC-registered dentist with a performer number, practising across Surrey in fully private and mixed NHS/private settings. She combines genuine clinical skill with warm, patient-centred care — taking time to understand each patient's goals and building personalised treatment plans that put long-term oral health first.
+            Mrs Olesya Pavlova is a GDC-registered dentist with over 20 years of clinical experience, now focused on dentist-led facial aesthetics across Surrey. Her career began with a dental degree in St. Petersburg, followed by roles at high-end London clinics including Harley Street, private practice in Geneva, and general and restorative dentistry across the UK.
           </p>
           <p class="fade-up">
-            Her clinical background spans general and restorative dentistry, endodontics, and the latest dental technologies: rotary endodontic systems, dental loupes, intraoral cameras, digital radiography, and dental microscopes — tools that allow for greater precision and less invasive treatment. She is currently pursuing a Master's in Restorative Dentistry with Tipton Training.
+            That background is exactly what makes her aesthetics work different: a daily, working knowledge of facial anatomy, thousands of injections placed, and the clinical governance that comes with being a registered healthcare professional. She is a trained aesthetic practitioner certified by the British Aesthetic Academy, and continues to study at the highest level — currently pursuing an MSc in Restorative Dentistry.
           </p>
           <p class="fade-up">
-            Alongside her dental practice, Olesya is a trained aesthetic practitioner certified by the British Aesthetic Academy. She offers a full range of anti-wrinkle and dermal filler treatments — from subtle upper-face refinements to full-face transformations — delivered with the anatomical precision and safety awareness that sets medically qualified practitioners apart.
+            Above all, her approach is calm, honest and unhurried. She'll only ever recommend what will genuinely help — and is just as happy to tell you when a treatment isn't right for you.
           </p>
         </div>
         <div class="about-stats">
           <div class="stat-card fade-up">
             <div class="stat-num">20+</div>
             <div class="stat-label">Years in practice</div>
-          </div>
-          <div class="stat-card fade-up">
-            <div class="stat-num">MSc</div>
-            <div class="stat-label">Restorative dentistry (in progress)</div>
-          </div>
-          <div class="stat-card fade-up">
-            <div class="stat-num">Private &amp;<br/>NHS</div>
-            <div class="stat-label">Broad practice experience</div>
           </div>
           <div class="stat-card fade-up">
             <div class="stat-num">GDC</div>
@@ -1147,216 +1205,9 @@
           </div>
           <div class="stat-card fade-up">
             <div class="stat-num">Surrey</div>
-            <div class="stat-label">Practising across Surrey</div>
+            <div class="stat-label">Clinic in Send, Woking</div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRUST -->
-  <section class="trust">
-    <div class="section-inner">
-      <p class="trust-statement fade-up">If you're going to trust someone<br/>to inject your face,<br/><em>a dentist is the obvious choice.</em></p>
-      <div class="trust-pillars">
-
-        <div class="trust-pillar fade-up">
-          <div class="trust-pillar-title">Injections every day</div>
-          <p class="trust-pillar-body">Administering mouth injections is a core part of clinical dentistry. Olesya has placed thousands of them over twenty years — with the anatomical confidence and steady hand that only comes from daily practice.</p>
-        </div>
-
-        <div class="trust-pillar fade-up">
-          <div class="trust-pillar-title">Facial anatomy expert</div>
-          <p class="trust-pillar-body">The face is the dentist's domain. Every nerve, muscle, blood vessel and tissue plane in the face is covered in depth during dental training — and applied every day in the chair. That same knowledge protects you during every aesthetic treatment.</p>
-        </div>
-
-        <div class="trust-pillar fade-up">
-          <div class="trust-pillar-title">Highly regulated</div>
-          <p class="trust-pillar-body">GDC-registered dentists operate under some of the strictest clinical governance in UK healthcare — mandatory continuing education, rigorous annual appraisals, and full professional indemnity. These are standards beauty therapists are not held to.</p>
-        </div>
-
-        <div class="trust-pillar fade-up">
-          <div class="trust-pillar-title">UK law is changing</div>
-          <p class="trust-pillar-body">Under the Health and Care Act 2022, botulinum toxin in the UK must now be prescribed by a qualified healthcare professional. Dentists meet that requirement. Beauticians and hairdressers do not — and the consequences of going to an unqualified practitioner can be severe.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <div class="gold-line"></div>
-
-  <!-- INJECTABLES -->
-  <section class="injectables" id="injectables">
-    <div class="section-inner">
-      <span class="section-label fade-up">Facial Aesthetics</span>
-      <h2 class="section-heading fade-up">Anti-wrinkle &amp;<br/>dermal filler treatments</h2>
-      <div class="injectables-grid">
-
-        <div class="inject-cat fade-up">
-          <span class="inject-cat-label">Anti-wrinkle</span>
-          <div class="inject-cat-title">Upper Face</div>
-          <ul class="inject-list">
-            <li data-tip="Smooths the vertical '11' lines between the brows that form from frowning or concentrating.">Frown Lines<span class="inject-price">£180</span></li>
-            <li data-tip="Relaxes horizontal creases across the forehead for a smoother, more rested look.">Forehead Lines<span class="inject-price">£180</span></li>
-            <li data-tip="Softens the fine lines that fan out from the outer corners of the eyes when smiling.">Crow's Feet<span class="inject-price">£180</span></li>
-            <li data-tip="Reduces the small diagonal creases on either side of the nose that appear when smiling.">Bunny Lines<span class="inject-price">£160</span></li>
-            <li data-tip="Gently elevates the brow arch to open up the eyes and create a fresher appearance.">Brow Lift<span class="inject-price">£160</span></li>
-          </ul>
-          <p class="inject-pkg-note">2 areas £250 &nbsp;·&nbsp; 3 areas £310</p>
-        </div>
-
-        <div class="inject-cat fade-up">
-          <span class="inject-cat-label">Anti-wrinkle</span>
-          <div class="inject-cat-title">Lower Face</div>
-          <ul class="inject-list">
-            <li data-tip="Relaxes the vertical cords in the neck for a smoother, more youthful neckline.">Neck &amp; Platysmal Bands<span class="inject-price">£300</span></li>
-            <li data-tip="Reduces the masseter jaw muscles to slim and soften a wide or square face shape.">Jawline Slimming<span class="inject-price">£350</span></li>
-            <li data-tip="Prevents the upper lip from lifting too high when smiling, reducing visible gum.">Gummy Smiles<span class="inject-price">£190</span></li>
-            <li data-tip="A small amount of relaxant along the upper lip border creates a subtle pout without adding filler.">Lip Flip<span class="inject-price">£160</span></li>
-            <li data-tip="Softens the fine vertical lines around the mouth, sometimes called smoker's or lipstick lines.">Perioral Lines<span class="inject-price">£190</span></li>
-            <li data-tip="Smooths an uneven, dimpled or 'orange peel' texture on the chin for a cleaner profile.">Pebbled Chin<span class="inject-price">£160</span></li>
-          </ul>
-        </div>
-
-        <div class="inject-cat fade-up">
-          <span class="inject-cat-label">Dermal Fillers</span>
-          <div class="inject-cat-title">Standard</div>
-          <ul class="inject-list">
-            <li data-tip="Adds natural-looking fullness and definition to the lips, tailored to your desired shape.">Lip Volume<span class="inject-price">£310</span></li>
-            <li data-tip="Softens the lines running from the sides of the nose down to the corners of the mouth.">Nasolabial Folds<span class="inject-price">£295</span></li>
-            <li data-tip="Fills the downward creases from the corners of the mouth that can give a sad or stern expression.">Marionette Lines<span class="inject-price">£295</span></li>
-            <li data-tip="Restores lost volume or enhances cheekbone definition for a lifted, sculpted look.">Cheek Volume<span class="inject-price">£295</span></li>
-            <li data-tip="Defines and sharpens the jawline using filler for a more structured, contoured profile.">Jawline Filler<span class="inject-price">£320</span></li>
-            <li data-tip="Adds projection and balance to the chin to improve overall facial harmony and proportion.">Chin Filler<span class="inject-price">£295</span></li>
-          </ul>
-        </div>
-
-        <div class="inject-cat fade-up">
-          <span class="inject-cat-label">Dermal Fillers</span>
-          <div class="inject-cat-title">Masterclass</div>
-          <ul class="inject-list">
-            <li data-tip="Reduces the hollows and dark shadows beneath the eyes for a fresher, less tired appearance.">Tear Troughs<span class="inject-price">£400</span></li>
-            <li data-tip="Reshapes and refines the nose without surgery using precise filler placement to smooth bumps or lift the tip.">Non-surgical Rhinoplasty<span class="inject-price">£450</span></li>
-          </ul>
-        </div>
-
-        <div class="inject-cat fade-up">
-          <span class="inject-cat-label">Advanced</span>
-          <div class="inject-cat-title">Full-face Transformations</div>
-          <ul class="inject-list">
-            <li data-tip="A bespoke combination of treatments designed to soften and enhance typically feminine facial features.">Feminisation<span class="inject-price">from £700</span></li>
-            <li data-tip="A bespoke combination of treatments designed to define and sharpen typically masculine facial features.">Masculinisation<span class="inject-price">from £700</span></li>
-          </ul>
-        </div>
-
-        <div class="inject-cat fade-up">
-          <span class="inject-cat-label">Anti-wrinkle / Body</span>
-          <div class="inject-cat-title">Excessive Sweating</div>
-          <ul class="inject-list">
-            <li data-tip="Small injections into the underarm block the nerve signals that trigger sweat glands, giving relief for 6–12 months.">Underarm treatment<span class="inject-price">£450</span></li>
-            <li data-tip="An effective, long-lasting solution for uncontrollable sweating that significantly improves daily comfort and confidence.">Stops excessive sweating (hyperhidrosis)</li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div class="location-grid fade-up">
-        <div>
-          <span class="location-label">Aesthetics Clinic</span>
-          <p class="location-address">Send Treatment Rooms<br/>175 Send Road<br/>Send, Woking<br/>Surrey GU23 7ET</p>
-          <a href="https://maps.google.com/?q=175+Send+Rd,+Send,+Woking,+Surrey,+GU23+7ET" target="_blank" rel="noopener" class="location-directions">
-            Get directions
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-        <iframe
-          class="location-map"
-          src="https://maps.google.com/maps?q=175+Send+Rd,+Send,+Woking,+Surrey,+GU23+7ET&output=embed"
-          allowfullscreen
-          loading="lazy"
-          title="175 Send Road, Send, Woking, Surrey GU23 7ET">
-        </iframe>
-      </div>
-
-      <div style="margin-top:52px;" class="fade-up">
-        <a href="#contact" class="btn btn-gold">Book a consultation</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERTISE -->
-  <section class="expertise" id="expertise">
-    <div class="section-inner">
-      <span class="section-label fade-up">Dental Expertise</span>
-      <h2 class="section-heading fade-up">Areas of dental<br/>specialisation</h2>
-      <div class="skills-grid">
-
-        <div class="skill-card fade-up">
-          <div class="skill-icon">
-            <!-- Tooth / crown icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2C9 2 7 4 7 6c0 1.5.3 2.5.8 3.5L9 20c.1.6.5 2 2 2h2c1.5 0 1.9-1.4 2-2l1.2-10.5c.5-1 .8-2 .8-3.5 0-2-2-4-5-4z"/>
-              <path d="M9 6c1 1 2 1.5 3 1.5s2-.5 3-1.5"/>
-            </svg>
-          </div>
-          <h3 class="skill-title">Fillings, Crowns &amp; Repairs</h3>
-          <p class="skill-desc">From simple fillings to crowns, bridges, and dentures — restoring damaged or missing teeth as carefully and conservatively as possible.</p>
-        </div>
-
-        <div class="skill-card fade-up">
-          <div class="skill-icon">
-            <!-- Root canal / precision tool icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14.5 2.5l7 7-2 2-7-7 2-2z"/>
-              <path d="M19 7l-9.5 9.5"/>
-              <path d="M9.5 16.5L5 21a1.4 1.4 0 0 0 0 2l.6-.6a1.4 1.4 0 0 0 2 0L9.5 20"/>
-              <circle cx="6.5" cy="19.5" r="1.5"/>
-            </svg>
-          </div>
-          <h3 class="skill-title">Root Canal Treatment</h3>
-          <p class="skill-desc">Saving a tooth that's badly decayed or infected, rather than removing it. Carried out with precision tools and magnification to keep things as comfortable as possible.</p>
-        </div>
-
-        <div class="skill-card fade-up">
-          <div class="skill-icon">
-            <!-- Digital / scan technology icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="3" width="20" height="14" rx="2"/>
-              <path d="M8 21h8M12 17v4"/>
-              <path d="M7 8h10M7 11h6"/>
-              <circle cx="17" cy="11" r="1" fill="currentColor"/>
-            </svg>
-          </div>
-          <h3 class="skill-title">Modern Technology</h3>
-          <p class="skill-desc">Using digital X-rays, scanning tools, and magnification equipment to see more clearly, diagnose accurately, and make visits as straightforward as possible.</p>
-        </div>
-
-        <div class="skill-card fade-up">
-          <div class="skill-icon">
-            <!-- Shield / gum health icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              <path d="M9 12l2 2 4-4"/>
-            </svg>
-          </div>
-          <h3 class="skill-title">Gum Health</h3>
-          <p class="skill-desc">Caring for your gums with practical advice, cleaning, and treatment for gum disease — because healthy gums are the foundation of a healthy mouth.</p>
-        </div>
-
-        <div class="skill-card fade-up">
-          <div class="skill-icon">
-            <!-- Clipboard / personal plan icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-              <rect x="8" y="2" width="8" height="4" rx="1"/>
-              <path d="M9 12h6M9 16h4"/>
-            </svg>
-          </div>
-          <h3 class="skill-title">Personal Treatment Plans</h3>
-          <p class="skill-desc">Taking the time to understand what you want from your dental care and putting together a clear, honest plan that works around your needs and lifestyle.</p>
-        </div>
-
       </div>
     </div>
   </section>
@@ -1380,58 +1231,11 @@
     </div>
   </section>
 
-  <!-- CAREER -->
-  <section class="career" id="career">
-    <div class="section-inner">
-      <span class="section-label fade-up">Career</span>
-      <h2 class="section-heading fade-up">Clinical journey</h2>
-      <div class="timeline">
-
-        <div class="timeline-item fade-up">
-          <div class="tl-date">2016 – Present</div>
-          <div>
-            <div class="tl-role">General Dentist</div>
-            <div class="tl-place">Abbeymead Dental &amp; previous practices, Surrey</div>
-            <div class="tl-desc">Currently practising at Abbeymead Dental. Previously at Weybridge Dental Practice and practices in Leatherhead — providing general, restorative, and cosmetic dentistry in both fully private and mixed NHS/private settings.</div>
-          </div>
-        </div>
-
-        <div class="timeline-item fade-up">
-          <div class="tl-date">2015 – 2016</div>
-          <div>
-            <div class="tl-role">General Dentist</div>
-            <div class="tl-place">KBT Dental Surgery, Kirkcudbright, Scotland</div>
-            <div class="tl-desc">NHS dental practice in Scotland; broad hands-on experience across preventative and restorative treatments for a diverse patient base.</div>
-          </div>
-        </div>
-
-        <div class="timeline-item fade-up">
-          <div class="tl-date">2010 – 2015</div>
-          <div>
-            <div class="tl-role">Dental Hygienist</div>
-            <div class="tl-place">Geneva, Switzerland</div>
-            <div class="tl-desc">Practising in private dental settings in Geneva, developing clinical skills in a high-standard international environment.</div>
-          </div>
-        </div>
-
-        <div class="timeline-item fade-up">
-          <div class="tl-date">2005 – 2010</div>
-          <div>
-            <div class="tl-role">Dental Nurse, Hygienist &amp; Dental Therapist</div>
-            <div class="tl-place">High-end clinics, including Harley Street, London</div>
-            <div class="tl-desc">Built a broad clinical foundation across dental nursing, hygiene, and therapy roles at Harley Street — gaining invaluable experience in UK dental practice, patient communication, and clinical teamwork while preparing for UK registration.</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
   <!-- EDUCATION -->
   <section class="education" id="education">
     <div class="section-inner">
       <span class="section-label fade-up">Education &amp; Qualifications</span>
-      <h2 class="section-heading fade-up">Committed to<br/>lifelong learning</h2>
+      <h2 class="section-heading fade-up">Qualified, and<br/>always learning</h2>
       <div class="edu-grid">
         <div class="edu-card highlight fade-up">
           <span class="edu-year">2026</span>
@@ -1439,49 +1243,9 @@
           <div class="edu-inst">British Aesthetic Academy</div>
         </div>
         <div class="edu-card highlight fade-up">
-          <span class="edu-year">In progress – 2027</span>
-          <div class="edu-qual">MSc Restorative Dentistry</div>
-          <div class="edu-inst">Tipton Training</div>
-        </div>
-        <div class="edu-card fade-up">
-          <span class="edu-year">2025</span>
-          <div class="edu-qual">Postgraduate Diploma in Prosthodontics</div>
-          <div class="edu-inst">Tipton Training</div>
-        </div>
-        <div class="edu-card fade-up">
-          <span class="edu-year">2024 – 2025</span>
-          <div class="edu-qual">Certificate in Restorative Dentistry</div>
-          <div class="edu-inst">Tipton Training</div>
-        </div>
-        <div class="edu-card fade-up">
-          <span class="edu-year">2023 – 2024</span>
-          <div class="edu-qual">Certificate in Operative Dentistry</div>
-          <div class="edu-inst">Tipton Training</div>
-        </div>
-        <div class="edu-card fade-up">
           <span class="edu-year">2023</span>
           <div class="edu-qual">Certificate in Facial Aesthetics</div>
           <div class="edu-inst">Cosmetic Courses</div>
-        </div>
-        <div class="edu-card fade-up">
-          <span class="edu-year">2019</span>
-          <div class="edu-qual">Certificate in Dental Law and Ethics</div>
-          <div class="edu-inst"></div>
-        </div>
-        <div class="edu-card fade-up">
-          <span class="edu-year">2014</span>
-          <div class="edu-qual">Certificate in Conservative Dentistry</div>
-          <div class="edu-inst">Institute of Dentistry, St. Petersburg</div>
-        </div>
-        <div class="edu-card fade-up">
-          <span class="edu-year">2012</span>
-          <div class="edu-qual">ORE Statutory Exam</div>
-          <div class="edu-inst">London</div>
-        </div>
-        <div class="edu-card fade-up">
-          <span class="edu-year">2008 – 2010</span>
-          <div class="edu-qual">Diploma in Dental Hygiene &amp; Therapy</div>
-          <div class="edu-inst">King's College Hospital, London</div>
         </div>
         <div class="edu-card fade-up">
           <span class="edu-year">1998 – 2003</span>
@@ -1489,20 +1253,66 @@
           <div class="edu-inst">State Medical University of I.P. Pavlov, St. Petersburg</div>
         </div>
         <div class="edu-card fade-up">
-          <span class="edu-year">–</span>
-          <div class="edu-qual">Certificate in PTLLS</div>
-          <div class="edu-inst">Preparing to Teach in the Lifelong Learning Sector</div>
+          <span class="edu-year">In progress – 2027</span>
+          <div class="edu-qual">MSc Restorative Dentistry</div>
+          <div class="edu-inst">Tipton Training</div>
         </div>
       </div>
+
+      <details class="edu-more fade-up">
+        <summary>View full education &amp; qualifications</summary>
+        <div class="edu-grid" style="margin-top:2px;">
+          <div class="edu-card">
+            <span class="edu-year">2025</span>
+            <div class="edu-qual">Postgraduate Diploma in Prosthodontics</div>
+            <div class="edu-inst">Tipton Training</div>
+          </div>
+          <div class="edu-card">
+            <span class="edu-year">2024 – 2025</span>
+            <div class="edu-qual">Certificate in Restorative Dentistry</div>
+            <div class="edu-inst">Tipton Training</div>
+          </div>
+          <div class="edu-card">
+            <span class="edu-year">2023 – 2024</span>
+            <div class="edu-qual">Certificate in Operative Dentistry</div>
+            <div class="edu-inst">Tipton Training</div>
+          </div>
+          <div class="edu-card">
+            <span class="edu-year">2019</span>
+            <div class="edu-qual">Certificate in Dental Law and Ethics</div>
+            <div class="edu-inst"></div>
+          </div>
+          <div class="edu-card">
+            <span class="edu-year">2014</span>
+            <div class="edu-qual">Certificate in Conservative Dentistry</div>
+            <div class="edu-inst">Institute of Dentistry, St. Petersburg</div>
+          </div>
+          <div class="edu-card">
+            <span class="edu-year">2012</span>
+            <div class="edu-qual">ORE Statutory Exam</div>
+            <div class="edu-inst">London</div>
+          </div>
+          <div class="edu-card">
+            <span class="edu-year">2008 – 2010</span>
+            <div class="edu-qual">Diploma in Dental Hygiene &amp; Therapy</div>
+            <div class="edu-inst">King's College Hospital, London</div>
+          </div>
+          <div class="edu-card">
+            <span class="edu-year">–</span>
+            <div class="edu-qual">Certificate in PTLLS</div>
+            <div class="edu-inst">Preparing to Teach in the Lifelong Learning Sector</div>
+          </div>
+        </div>
+      </details>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section class="contact" id="contact">
     <div class="section-inner">
-      <span class="section-label fade-up">Contact</span>
-      <h2 class="section-heading fade-up">Let's talk</h2>
-      <p class="contact-body fade-up">Whether you're interested in facial aesthetic treatments, or looking for caring and personalised dentistry — or a practice interested in Olesya's experience — please get in touch.</p>
+      <span class="section-label fade-up">Contact &amp; Booking</span>
+      <h2 class="section-heading fade-up">Book a consultation</h2>
+      <p class="contact-body fade-up">Ready to talk about facial aesthetics — or have a question first? Call, message on WhatsApp, or send a note below. Olesya personally handles every enquiry.</p>
 
       <div class="contact-grid fade-up">
         <div class="contact-aside">
@@ -1575,14 +1385,41 @@
           <p class="form-status" id="formStatus"></p>
         </form>
       </div>
+
+      <div class="location-grid fade-up">
+        <div>
+          <span class="location-label">Aesthetics Clinic</span>
+          <p class="location-address">Send Treatment Rooms<br/>175 Send Road<br/>Send, Woking<br/>Surrey GU23 7ET</p>
+          <a href="https://maps.google.com/?q=175+Send+Rd,+Send,+Woking,+Surrey,+GU23+7ET" target="_blank" rel="noopener" class="location-directions">
+            Get directions
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <iframe
+          class="location-map"
+          src="https://maps.google.com/maps?q=175+Send+Rd,+Send,+Woking,+Surrey,+GU23+7ET&output=embed"
+          allowfullscreen
+          loading="lazy"
+          title="175 Send Road, Send, Woking, Surrey GU23 7ET">
+        </iframe>
+      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <span class="footer-name">Mrs Olesya Pavlova</span>
-    <span class="footer-note">GDC Registered Dentist &nbsp;·&nbsp; Surrey, UK</span>
+    <span class="footer-note">Dentist-Led Facial Aesthetics &nbsp;·&nbsp; Surrey, UK</span>
   </footer>
+
+  <!-- STICKY MOBILE CTA -->
+  <div class="mobile-cta">
+    <a class="mc-book" href="#contact">Book consultation</a>
+    <a class="mc-wa" href="https://wa.me/447557884658" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+      WhatsApp
+    </a>
+  </div>
 
   <script>
     // ── Hamburger menu ──────────────────────────────────────────
