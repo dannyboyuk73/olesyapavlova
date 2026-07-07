@@ -6,6 +6,21 @@ const app = express();
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 app.use(express.json());
+
+// Sandpit/staging only: keep the preview site out of search engines.
+// Enabled by setting STAGING=true on the staging Railway service; the live
+// service leaves it unset, so this never affects olesyapavlova.co.uk.
+const IS_STAGING = process.env.STAGING === 'true';
+if (IS_STAGING) {
+  app.use((req, res, next) => {
+    res.set('X-Robots-Tag', 'noindex, nofollow');
+    next();
+  });
+  app.get('/robots.txt', (req, res) => {
+    res.type('text/plain').send('User-agent: *\nDisallow: /\n');
+  });
+}
+
 app.use(express.static(path.join(__dirname)));
 
 app.post('/api/contact', async (req, res) => {
