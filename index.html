@@ -266,7 +266,7 @@
     }
 
     /* ── SECTION SHELL ── */
-    section { padding: 64px 40px 88px; }
+    section { padding: 58px 40px 68px; }
 
     .section-inner { max-width: 1100px; margin: 0 auto; }
 
@@ -286,7 +286,7 @@
       font-weight: 300;
       color: var(--deep);
       line-height: 1.1;
-      margin-bottom: 52px;
+      margin-bottom: 42px;
     }
 
     /* ── TRUST STRIP ── */
@@ -325,7 +325,7 @@
     .trust-strip-item svg { width: 15px; height: 15px; stroke: var(--gold); flex-shrink: 0; }
 
     /* ── WHY A DENTIST ── */
-    .why { background: var(--ink); padding: 64px 40px 88px; }
+    .why { background: var(--ink); padding: 58px 40px 68px; }
     .why .section-label { text-align: left; }
     .why .section-heading { color: var(--cream); margin-bottom: 26px; }
     .why-lead {
@@ -847,7 +847,7 @@
       width: 100%;
     }
     .form-group input::placeholder,
-    .form-group textarea::placeholder { color: rgba(196,184,164,0.3); }
+    .form-group textarea::placeholder { color: rgba(196,184,164,0.5); }
     .form-group input:focus,
     .form-group textarea:focus { border-color: rgba(184,151,90,0.5); }
     .form-group textarea { resize: vertical; min-height: 120px; }
@@ -906,12 +906,15 @@
       .hero { grid-template-columns: 1fr; min-height: unset; }
       .hero-left { order: 2; min-height: 46vh; padding: 54px 40px 46px; }
       .hero-right { order: 1; padding: 96px 40px 56px; }
+      /* Render hero text instantly on mobile — no entrance fade that can
+         read as a blank/broken hero on slower phones */
+      .hero-name-block, .hero-right > * { animation: none !important; }
       .about-grid { grid-template-columns: 1fr; gap: 44px; }
       .edu-grid { grid-template-columns: 1fr; }
       nav { padding: 18px 24px; }
       .nav-links { gap: 22px; }
-      section { padding: 52px 24px 68px; }
-      .why { padding: 52px 24px 68px; }
+      section { padding: 46px 24px 54px; }
+      .why { padding: 46px 24px 54px; }
       .press-card { grid-template-columns: 1fr; gap: 28px; }
       .treat-grid { grid-template-columns: 1fr 1fr; }
       .process-grid { grid-template-columns: 1fr 1fr; }
