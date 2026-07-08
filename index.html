@@ -740,30 +740,8 @@
       -webkit-user-select: text;
     }
     /* Phone row is a static container (not a whole-row link) so the number
-       stays selectable; only the icon (call) and copy button are interactive */
+       stays selectable; only the icon (call) is interactive */
     .contact-method-phone:hover { padding-left: 6px; background: transparent; }
-    .copy-btn {
-      margin-left: auto;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      flex-shrink: 0;
-      background: transparent;
-      border: 1px solid rgba(184,151,90,0.4);
-      color: var(--gold);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 8px 13px;
-      border-radius: 3px;
-      cursor: pointer;
-      transition: border-color 0.2s, color 0.2s, background 0.2s;
-    }
-    .copy-btn:hover { border-color: var(--gold); background: rgba(184,151,90,0.1); }
-    .copy-btn svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-    .copy-btn.copied { color: #7ec8a4; border-color: rgba(126,200,164,0.5); background: rgba(126,200,164,0.08); }
     .contact-qr {
       display: flex;
       align-items: center;
@@ -1370,10 +1348,6 @@
                   <span class="contact-method-label">Call or text</span>
                   <span class="contact-method-value">+44 7557 884658</span>
                 </span>
-                <button type="button" class="copy-btn" data-copy="+447557884658" aria-label="Copy phone number">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-                  <span class="copy-btn-label">Copy</span>
-                </button>
               </div>
             </li>
             <li>
@@ -1539,33 +1513,6 @@
       }
       btn.disabled = false;
       btn.textContent = 'Send message';
-    });
-
-    // ── Copy-to-clipboard buttons ───────────────────────────────
-    document.querySelectorAll('.copy-btn').forEach((btn) => {
-      btn.addEventListener('click', async () => {
-        const text = btn.getAttribute('data-copy');
-        try {
-          await navigator.clipboard.writeText(text);
-        } catch (err) {
-          const ta = document.createElement('textarea');
-          ta.value = text;
-          ta.style.position = 'fixed';
-          ta.style.opacity = '0';
-          document.body.appendChild(ta);
-          ta.select();
-          try { document.execCommand('copy'); } catch (_) {}
-          document.body.removeChild(ta);
-        }
-        const label = btn.querySelector('.copy-btn-label');
-        const original = label ? label.textContent : '';
-        btn.classList.add('copied');
-        if (label) label.textContent = 'Copied';
-        setTimeout(() => {
-          btn.classList.remove('copied');
-          if (label) label.textContent = original;
-        }, 1800);
-      });
     });
   </script>
 </body>
