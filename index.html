@@ -14,7 +14,7 @@
     "name": "Olesya Pavlova — Dentist-Led Facial Aesthetics",
     "description": "Dentist-led facial aesthetics in Send, Woking and across Surrey. Subtle anti-wrinkle and dermal filler treatments from Mrs Olesya Pavlova, a GDC-registered dentist with over 20 years of clinical experience.",
     "url": "https://olesyapavlova.co.uk",
-    "sameAs": ["https://g.page/r/CSufsCu-pjd9EBM"],
+    "sameAs": ["https://www.facebook.com/olesyapavlovaaesthetics", "https://g.page/r/CSufsCu-pjd9EBM"],
     "telephone": "+447557884658",
     "email": "hello@olesyapavlova.co.uk",
     "image": "https://olesyapavlova.co.uk/olesya.jpg",
@@ -1019,6 +1019,10 @@
       transition: color 0.2s;
     }
     .footer-review:hover { color: var(--gold-lt); }
+    .footer-links { display: flex; align-items: center; gap: 18px; }
+    .footer-social { color: var(--gold); display: inline-flex; transition: color 0.2s; }
+    .footer-social:hover { color: var(--gold-lt); }
+    .footer-social svg { width: 18px; height: 18px; display: block; }
 
     /* ── STICKY MOBILE CTA ── */
     .mobile-cta { display: none; }
@@ -1590,7 +1594,12 @@
   <footer>
     <span class="footer-name">Mrs Olesya Pavlova</span>
     <span class="footer-note">Dentist-Led Facial Aesthetics &nbsp;·&nbsp; Surrey, UK</span>
-    <a class="footer-review" href="https://g.page/r/CSufsCu-pjd9EBM/review" target="_blank" rel="noopener">★ Leave a Google review</a>
+    <div class="footer-links">
+      <a class="footer-review" href="https://g.page/r/CSufsCu-pjd9EBM/review" target="_blank" rel="noopener">★ Leave a Google review</a>
+      <a class="footer-social" href="https://www.facebook.com/olesyapavlovaaesthetics" target="_blank" rel="noopener" aria-label="Follow Olesya Pavlova Facial Aesthetics on Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.26h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+      </a>
+    </div>
   </footer>
 
   <!-- STICKY MOBILE CTA -->
