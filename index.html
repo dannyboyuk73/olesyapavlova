@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Mark that JS is available so scroll-reveal only hides content when it can
+       reliably reveal it again. Without JS, all content stays visible. -->
+  <script>document.documentElement.classList.add('js');</script>
   <title>Dentist-Led Facial Aesthetics in Surrey — Mrs Olesya Pavlova</title>
   <meta name="description" content="Dentist-led facial aesthetics in Send, Woking & across Surrey. Personalised consultations and subtle dermal filler treatments with Mrs Olesya Pavlova — a GDC-registered dentist with 20+ years' clinical experience." />
   <link rel="canonical" href="https://olesyapavlova.co.uk/" />
@@ -61,7 +64,8 @@
     "founder": {
       "@type": "Person",
       "name": "Mrs Olesya Pavlova",
-      "jobTitle": "GDC-Registered Dentist & Aesthetic Practitioner"
+      "jobTitle": "GDC-Registered Dentist",
+      "identifier": { "@type": "PropertyValue", "propertyName": "GDC registration number", "value": "156643" }
     },
     "makesOffer": [
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Facial aesthetics consultation" } },
@@ -78,7 +82,7 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "Why choose a dentist for facial aesthetics?", "acceptedAnswer": { "@type": "Answer", "text": "Over 20 years of clinical experience as a dentist brings deep expertise in facial anatomy, patient assessment, precision injection technique and complication management. Together with the clinical governance and aftercare standards of a GDC-registered healthcare professional, that means your care is planned and delivered with medical judgement — not just a short course." } },
+      { "@type": "Question", "name": "Why choose a dentist for facial aesthetics?", "acceptedAnswer": { "@type": "Answer", "text": "Over 20 years of clinical experience as a dentist brings extensive knowledge of facial anatomy, careful patient assessment and precision injection techniques. Together with the clinical governance and aftercare standards of a GDC-registered healthcare professional, that means your care is planned and delivered with medical judgement — not just a short course." } },
       { "@type": "Question", "name": "Do I need a consultation first?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Everything begins with a consultation to understand your goals, assess your suitability and medical history, and agree a personalised plan. A consultation may not always result in treatment — some concerns are better suited to other options, and Olesya will tell you honestly." } },
       { "@type": "Question", "name": "Do you offer dermal fillers in Woking?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Dermal filler treatments — including lip filler, cheek filler, tear troughs, and facial balancing — are available at the Send clinic, a short drive from Woking and Guildford." } },
       { "@type": "Question", "name": "How natural will the results look?", "acceptedAnswer": { "@type": "Answer", "text": "The aim is always subtle, natural-looking enhancement — refreshed, never overdone. Treatments are tailored to your features and agreed with you at consultation." } },
@@ -115,11 +119,35 @@
 
     section[id], div[id] { scroll-margin-top: 72px; }
 
-    /* ── SCROLL ANIMATIONS ── */
+    /* Skip link + visible keyboard focus */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      z-index: 200;
+      background: var(--gold);
+      color: var(--ink);
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 0 0 3px 0;
+    }
+    .skip-link:focus { left: 0; }
+    a:focus-visible, button:focus-visible, input:focus-visible,
+    select:focus-visible, textarea:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    /* ── SCROLL ANIMATIONS ──
+       Content is visible by default; only hidden (for the reveal) when JS is
+       available, so the page stays fully readable if JS or the observer fails. */
     .fade-up {
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .js .fade-up {
       opacity: 0;
       transform: translateY(28px);
-      transition: opacity 0.75s ease, transform 0.75s ease;
     }
     .fade-up.visible {
       opacity: 1;
@@ -1024,6 +1052,27 @@
     .form-status { margin-top: 16px; font-size: 13px; font-weight: 300; display: none; }
     .form-status.success { color: #7ec8a4; display: block; }
     .form-status.error   { color: #e08080; display: block; }
+    .form-group select {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(196,184,164,0.15);
+      border-radius: 2px;
+      padding: 13px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--cream);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-group select:focus { border-color: rgba(184,151,90,0.5); }
+    .form-group select option { color: #1a2422; }
+    .field-error { display: block; margin-top: 6px; font-size: 12px; font-weight: 400; color: #e08080; }
+    .form-hint { margin-top: 7px; font-size: 12px; font-weight: 300; color: rgba(196,184,164,0.7); line-height: 1.5; }
+    .form-privacy { margin-top: 16px; font-size: 12px; font-weight: 300; color: rgba(196,184,164,0.7); line-height: 1.6; }
+    .form-privacy a { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(184,151,90,0.4); }
     @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
 
     /* ── FOOTER ── */
@@ -1144,31 +1193,46 @@
       body { padding-bottom: 54px; }
     }
 
-    /* ── HERO LOAD ANIMATIONS ── */
+    /* ── HERO LOAD ANIMATIONS ──
+       Gated behind .js so hero text is instantly visible without JS. */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    .hero-name-block { animation: fadeUp 1s ease both; }
-    .hero-right > * { animation: fadeUp 0.9s ease both; }
-    .hero-right > *:nth-child(1) { animation-delay: 0.15s; }
-    .hero-right > *:nth-child(2) { animation-delay: 0.3s; }
-    .hero-right > *:nth-child(3) { animation-delay: 0.45s; }
-    .hero-right > *:nth-child(4) { animation-delay: 0.6s; }
+    .js .hero-name-block { animation: fadeUp 1s ease both; }
+    .js .hero-right > * { animation: fadeUp 0.9s ease both; }
+    .js .hero-right > *:nth-child(1) { animation-delay: 0.15s; }
+    .js .hero-right > *:nth-child(2) { animation-delay: 0.3s; }
+    .js .hero-right > *:nth-child(3) { animation-delay: 0.45s; }
+    .js .hero-right > *:nth-child(4) { animation-delay: 0.6s; }
+
+    /* Respect reduced-motion: show everything immediately, no movement. */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+      html { scroll-behavior: auto; }
+      .fade-up, .js .fade-up { opacity: 1 !important; transform: none !important; }
+      .hero-name-block, .hero-right > * { animation: none !important; }
+    }
   </style>
 </head>
 <body>
 
+  <a href="#main" class="skip-link">Skip to content</a>
+
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-brand">Olesya <span>Pavlova</span></a>
+    <a href="/" class="nav-brand">Olesya <span>Pavlova</span></a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="/#treatments">Treatments</a></li>
-      <li><a href="/#why">Why a dentist</a></li>
+      <li><a href="/#treatments">Facial Aesthetics</a></li>
+      <li><a href="/about">About Olesya</a></li>
       <li><a href="/consultation">Consultation</a></li>
-      <li><a href="/#about">About</a></li>
-      <li><a href="/#faq">FAQs</a></li>
-      <li><a href="/#contact" class="nav-cta">Book a consultation</a></li>
+      <li><a href="/about#dentistry">Dentistry</a></li>
+      <li><a href="/#contact">Contact</a></li>
+      <li><a href="/consultation/book" class="nav-cta">Book a consultation</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -1176,9 +1240,9 @@
   </nav>
 
   <!-- HERO -->
-  <div class="hero">
+  <div class="hero" id="main">
     <div class="hero-left">
-      <img src="olesya.jpg" alt="Mrs Olesya Pavlova, GDC-registered dentist and aesthetic practitioner in Surrey" class="hero-photo" width="1920" height="1281" fetchpriority="high" />
+      <img src="olesya.jpg" alt="Mrs Olesya Pavlova, GDC-registered dentist, in Send near Woking, Surrey" class="hero-photo" width="1920" height="1281" fetchpriority="high" />
       <div class="hero-name-block">
         <div class="hero-name">Mrs<br/><em>Olesya</em><br/>Pavlova</div>
         <p class="hero-eyebrow">GDC-Registered Dentist · 20+ Years</p>
@@ -1193,7 +1257,7 @@
         Personalised consultations with Olesya Pavlova, GDC-registered dentist, in Send near Woking. Every plan is led by a medical assessment of your face — never a fixed menu.
       </p>
       <div class="cta-bar">
-        <a href="#contact" class="btn btn-primary">Book a consultation</a>
+        <a href="/consultation/book" class="btn btn-primary">Book a consultation</a>
         <a href="https://wa.me/447557884658" target="_blank" rel="noopener" class="btn btn-ghost">Ask Olesya on WhatsApp</a>
       </div>
     </div>
@@ -1202,11 +1266,10 @@
   <!-- TRUST STRIP -->
   <div class="trust-strip">
     <div class="trust-strip-inner">
-      <div class="trust-strip-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>GDC Registered</div>
+      <div class="trust-strip-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>GDC No. 156643</div>
       <div class="trust-strip-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>20+ Years Clinical Experience</div>
-      <div class="trust-strip-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Facial Anatomy Expertise</div>
-      <div class="trust-strip-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Aesthetics-Trained (BAA)</div>
-      <div class="trust-strip-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Clinic in Woking, Surrey</div>
+      <div class="trust-strip-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Knowledge of Facial Anatomy</div>
+      <div class="trust-strip-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Clinic in Send, Woking</div>
     </div>
   </div>
 
@@ -1215,24 +1278,25 @@
     <div class="section-inner">
       <span class="section-label fade-up">Why a dentist</span>
       <h2 class="section-heading fade-up">Why choose a dentist<br/>for facial aesthetics?</h2>
-      <p class="why-lead fade-up">Your face deserves medical judgement, not just a short course. Olesya brings over 20 years of clinical experience as a dentist — with deep expertise in facial anatomy, patient assessment, precision injection technique and complication management — to <em>every</em> treatment.</p>
+      <p class="why-lead fade-up">Your face deserves medical judgement, not just a short course. Olesya brings over 20 years of clinical experience as a dentist, with extensive knowledge of facial anatomy, careful patient assessment and precision injection techniques, to <em>every</em> treatment.</p>
 
       <div class="why-pillars">
         <div class="why-pillar fade-up">
-          <div class="why-pillar-title">Facial anatomy expertise</div>
-          <p class="why-pillar-body">The muscles, nerves, blood vessels and tissue planes of the face are studied in depth throughout dental training and are central to clinical practice. That knowledge guides safe, precise placement — and matters, because poorly placed filler can cause serious complications.</p>
+          <div class="why-pillar-title">Knowledge of facial anatomy</div>
+          <p class="why-pillar-body">The muscles, nerves, blood vessels and tissue planes of the face are studied in depth throughout dental training and are central to clinical practice. That knowledge guides safe, precise placement — and matters, because poorly placed filler can cause serious problems.</p>
         </div>
         <div class="why-pillar fade-up">
-          <div class="why-pillar-title">Precision injection technique</div>
+          <div class="why-pillar-title">Precision injection techniques</div>
           <p class="why-pillar-body">Precise, controlled injecting is a core clinical skill built over more than 20 years in dentistry. That translates into careful placement and a calm, steady, unhurried approach to your treatment.</p>
         </div>
         <div class="why-pillar fade-up">
-          <div class="why-pillar-title">Patient assessment &amp; suitability</div>
+          <div class="why-pillar-title">Careful patient assessment</div>
           <p class="why-pillar-body">Every plan starts with a proper medical assessment — your goals, facial structure, medical history and suitability. Sometimes the honest answer is that a treatment isn't right for you, and you'll be told so.</p>
         </div>
+        <!-- TODO(owner): Confirm exact aesthetics-specific indemnity wording before publishing an indemnity claim. Indemnity sentence omitted until cover confirmed for all advertised aesthetic procedures. -->
         <div class="why-pillar fade-up">
-          <div class="why-pillar-title">A regulated professional, ready for complications</div>
-          <p class="why-pillar-body">GDC-registered dentists work under strict clinical governance — ongoing education, annual appraisal and full professional indemnity — with the training to recognise and manage complications. The NHS advises checking your practitioner's training, qualifications and insurance before any cosmetic procedure.</p>
+          <div class="why-pillar-title">A regulated healthcare professional</div>
+          <p class="why-pillar-body">As a GDC-registered dentist (GDC No. 156643), Olesya maintains her professional development in accordance with the requirements of her registration. The NHS advises checking your practitioner's training, qualifications and insurance before any cosmetic procedure.</p>
         </div>
       </div>
 
@@ -1284,16 +1348,16 @@
         </div>
 
         <div class="treat-card fade-up">
-          <span class="treat-goal-label">Lines &amp; wrinkles</span>
+          <span class="treat-goal-label">Consultation-led</span>
           <div class="treat-goal-title">Concerned about lines?</div>
-          <p class="treat-goal-desc">If frown or forehead lines are on your mind, the first step is a consultation — a medical assessment of your face and an honest discussion of whether treatment is suitable for you. Some options are prescription-only medicines and can only be considered after that assessment.</p>
-          <a href="/consultation" class="btn btn-ghost" style="align-self:flex-start;margin-top:auto;">Book a consultation</a>
+          <p class="treat-goal-desc">Changes in your appearance can be discussed during a personal consultation with Olesya. She will listen to your concerns, review your medical history and explain the options that may be appropriate for you. The right options, if any, can only be discussed following an individual clinical assessment.</p>
+          <a href="/consultation/book" class="btn btn-ghost" style="align-self:flex-start;margin-top:auto;">Book a consultation</a>
         </div>
 
         <div class="treat-card treat-cta fade-up">
           <div class="treat-goal-title">Not sure what you need?</div>
           <p class="treat-cta-desc">That's exactly what a consultation is for. Olesya will assess your face, talk through your goals honestly, and recommend only what will genuinely help.</p>
-          <a href="#contact" class="btn btn-gold">Book a consultation</a>
+          <a href="/consultation/book" class="btn btn-gold">Book a consultation</a>
         </div>
 
       </div>
@@ -1342,13 +1406,10 @@
       <div class="about-grid">
         <div class="about-body">
           <p class="fade-up">
-            Mrs Olesya Pavlova is a GDC-registered dentist with over 20 years of clinical experience, now focused on dentist-led facial aesthetics across Surrey. Her career began with a dental degree in St. Petersburg, followed by roles at high-end London clinics including Harley Street, private practice in Geneva, and general and restorative dentistry across the UK.
+            Mrs Olesya Pavlova is a GDC-registered dentist (GDC No. 156643) with over 20 years of clinical experience, now focused on dentist-led facial aesthetics in Send, near Woking. Her approach is calm, honest and unhurried — she'll only ever recommend what will genuinely help, and is just as happy to tell you when a treatment isn't right for you.
           </p>
-          <p class="fade-up">
-            That background is exactly what makes her aesthetics work different: deep expertise in facial anatomy, precision injection technique, careful patient assessment and complication management, and the clinical governance that comes with being a registered healthcare professional. She is a trained aesthetic practitioner certified by the British Aesthetic Academy, and continues to study at the highest level — currently pursuing an MSc in Restorative Dentistry.
-          </p>
-          <p class="fade-up">
-            Above all, her approach is calm, honest and unhurried. She'll only ever recommend what will genuinely help — and is just as happy to tell you when a treatment isn't right for you.
+          <p class="fade-up" style="margin-top:6px;">
+            <a href="/about" class="btn btn-ghost">Learn more about Olesya</a>
           </p>
         </div>
         <div class="about-stats">
@@ -1358,116 +1419,26 @@
           </div>
           <div class="stat-card fade-up">
             <div class="stat-num">GDC</div>
-            <div class="stat-label">Registered &amp; performer-listed</div>
+            <div class="stat-label">Registered · No. 156643</div>
           </div>
           <div class="stat-card fade-up">
-            <div class="stat-num">BAA</div>
-            <div class="stat-label">British Aesthetic Academy certified</div>
+            <div class="stat-num">BDS</div>
+            <div class="stat-label">Qualified dentist</div>
           </div>
           <div class="stat-card fade-up">
-            <div class="stat-num">Surrey</div>
-            <div class="stat-label">Clinic in Send, Woking</div>
+            <div class="stat-num">Send</div>
+            <div class="stat-label">Clinic near Woking</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PRESS -->
-  <section class="press" id="press">
-    <div class="section-inner">
-      <span class="section-label fade-up">In the press</span>
-      <h2 class="section-heading fade-up">Featured by the<br/>British Dental Association</h2>
-      <div class="press-card fade-up">
-        <div>
-          <p class="press-publication">BDA Blog</p>
-          <p class="press-quote">"Building a dental career across Russia, Switzerland and the UK"</p>
-          <p class="press-desc">Olesya shares her journey — qualifying in St. Petersburg, practising in Geneva, and building a career in the UK — offering insight and guidance for internationally trained dentists navigating the path to UK practice.</p>
-        </div>
-        <a href="https://www.bda.org/news-and-opinion/blog/building-a-dental-career-across-russia-switzerland-and-the-uk/" target="_blank" rel="noopener" class="press-link">
-          Read the article
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-  </section>
+  <!-- Press coverage and the full education & qualifications chronology have
+       moved to the dedicated About Olesya page (/about) to keep the homepage
+       conversion path clean. -->
 
-  <!-- EDUCATION -->
-  <section class="education" id="education">
-    <div class="section-inner">
-      <span class="section-label fade-up">Education &amp; Qualifications</span>
-      <h2 class="section-heading fade-up">Qualified, and<br/>always learning</h2>
-      <div class="edu-grid">
-        <div class="edu-card highlight fade-up">
-          <span class="edu-year">2026</span>
-          <div class="edu-qual">Registered Practicing Dentist in Aesthetics</div>
-          <div class="edu-inst">British Aesthetic Academy</div>
-        </div>
-        <div class="edu-card highlight fade-up">
-          <span class="edu-year">2023</span>
-          <div class="edu-qual">Certificate in Facial Aesthetics</div>
-          <div class="edu-inst">Cosmetic Courses</div>
-        </div>
-        <div class="edu-card fade-up">
-          <span class="edu-year">1998 – 2003</span>
-          <div class="edu-qual">BDS (Bachelor of Dental Surgery)</div>
-          <div class="edu-inst">State Medical University of I.P. Pavlov, St. Petersburg</div>
-        </div>
-        <div class="edu-card fade-up">
-          <span class="edu-year">In progress – 2027</span>
-          <div class="edu-qual">MSc Restorative Dentistry</div>
-          <div class="edu-inst">Tipton Training</div>
-        </div>
-      </div>
-
-      <details class="edu-more fade-up">
-        <summary>View full education &amp; qualifications</summary>
-        <div class="edu-grid" style="margin-top:2px;">
-          <div class="edu-card">
-            <span class="edu-year">2025</span>
-            <div class="edu-qual">Postgraduate Diploma in Prosthodontics</div>
-            <div class="edu-inst">Tipton Training</div>
-          </div>
-          <div class="edu-card">
-            <span class="edu-year">2024 – 2025</span>
-            <div class="edu-qual">Certificate in Restorative Dentistry</div>
-            <div class="edu-inst">Tipton Training</div>
-          </div>
-          <div class="edu-card">
-            <span class="edu-year">2023 – 2024</span>
-            <div class="edu-qual">Certificate in Operative Dentistry</div>
-            <div class="edu-inst">Tipton Training</div>
-          </div>
-          <div class="edu-card">
-            <span class="edu-year">2019</span>
-            <div class="edu-qual">Certificate in Dental Law and Ethics</div>
-            <div class="edu-inst"></div>
-          </div>
-          <div class="edu-card">
-            <span class="edu-year">2014</span>
-            <div class="edu-qual">Certificate in Conservative Dentistry</div>
-            <div class="edu-inst">Institute of Dentistry, St. Petersburg</div>
-          </div>
-          <div class="edu-card">
-            <span class="edu-year">2012</span>
-            <div class="edu-qual">ORE Statutory Exam</div>
-            <div class="edu-inst">London</div>
-          </div>
-          <div class="edu-card">
-            <span class="edu-year">2008 – 2010</span>
-            <div class="edu-qual">Diploma in Dental Hygiene &amp; Therapy</div>
-            <div class="edu-inst">King's College Hospital, London</div>
-          </div>
-          <div class="edu-card">
-            <span class="edu-year">–</span>
-            <div class="edu-qual">Certificate in PTLLS</div>
-            <div class="edu-inst">Preparing to Teach in the Lifelong Learning Sector</div>
-          </div>
-        </div>
-      </details>
-    </div>
-  </section>
-
+  <!-- EDUCATION (moved to /about) -->
   <!-- FAQ -->
   <section class="faq" id="faq">
     <div class="section-inner">
@@ -1476,7 +1447,7 @@
       <div class="faq-list fade-up">
         <details class="faq-item">
           <summary>Why choose a dentist for facial aesthetics?</summary>
-          <div class="faq-answer">Over 20 years of clinical experience as a dentist brings deep expertise in facial anatomy, patient assessment, precision injection technique and complication management. Together with the clinical governance and aftercare standards of a GDC-registered healthcare professional, that means your care is planned and delivered with medical judgement — not just a short course.</div>
+          <div class="faq-answer">Over 20 years of clinical experience as a dentist brings extensive knowledge of facial anatomy, careful patient assessment and precision injection techniques. Together with the clinical governance and aftercare standards of a GDC-registered healthcare professional, that means your care is planned and delivered with medical judgement — not just a short course.</div>
         </details>
         <details class="faq-item">
           <summary>Do I need a consultation first?</summary>
@@ -1484,7 +1455,7 @@
         </details>
         <details class="faq-item">
           <summary>I'm concerned about lines and wrinkles — can you help?</summary>
-          <div class="faq-answer">The first step is always a consultation: a medical assessment of your face and an honest conversation about your options and whether treatment is suitable for you. Some options are prescription-only medicines, which can only be considered after that assessment — never as an off-the-shelf purchase. <a href="/consultation" style="color:var(--gold);">Book a consultation</a> to talk it through.</div>
+          <div class="faq-answer">The first step is always a personal consultation. Olesya will listen to your concerns, review your medical history and explain the options that may be appropriate for you. The right options, if any, can only be discussed following an individual clinical assessment. <a href="/consultation" style="color:var(--gold);">Learn about consultations</a> or <a href="/consultation/book" style="color:var(--gold);">book a consultation</a>.</div>
         </details>
         <details class="faq-item">
           <summary>Do you offer dermal fillers in Woking?</summary>
@@ -1509,9 +1480,9 @@
   <!-- CONTACT -->
   <section class="contact" id="contact">
     <div class="section-inner">
-      <span class="section-label fade-up">Contact &amp; Booking</span>
-      <h2 class="section-heading fade-up">Book a consultation</h2>
-      <p class="contact-body fade-up">Ready to talk about facial aesthetics — or have a question first? Call, message on WhatsApp, or send a note below. Olesya personally handles every enquiry.</p>
+      <span class="section-label fade-up">Contact</span>
+      <h2 class="section-heading fade-up">Get in touch</h2>
+      <p class="contact-body fade-up">Have a question, or ready to book? To arrange an aesthetics consultation, use the <a href="/consultation/book" style="color:var(--gold-lt);">booking page</a>. For anything else — dentistry, careers or a general question — call, message on WhatsApp, or send a note below. Olesya personally handles every enquiry.</p>
 
       <div class="contact-grid fade-up">
         <div class="contact-aside">
@@ -1561,27 +1532,41 @@
           </div>
         </div>
 
-        <form class="contact-form" id="contactForm" novalidate>
+        <form class="contact-form" id="contactForm" novalidate aria-describedby="formPrivacy">
           <div class="form-row">
             <div class="form-group">
               <label for="cf-name">Name</label>
-              <input type="text" id="cf-name" name="name" placeholder="Your name" required />
+              <input type="text" id="cf-name" name="name" placeholder="Your name" autocomplete="name" required aria-required="true" />
             </div>
             <div class="form-group">
               <label for="cf-email">Email</label>
-              <input type="email" id="cf-email" name="email" placeholder="your@email.com" required />
+              <input type="email" id="cf-email" name="email" placeholder="your@email.com" autocomplete="email" required aria-required="true" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-phone">Phone <span style="opacity:0.4;font-size:9px;letter-spacing:0">(optional)</span></label>
+              <input type="tel" id="cf-phone" name="phone" placeholder="+44 7700 000000" autocomplete="tel" />
+            </div>
+            <div class="form-group">
+              <label for="cf-reason">Reason for enquiry</label>
+              <select id="cf-reason" name="reason" required aria-required="true">
+                <option value="" selected disabled>Please choose…</option>
+                <option value="Aesthetics">Facial aesthetics</option>
+                <option value="Dentistry">Dentistry</option>
+                <option value="Careers">Careers &amp; recruitment</option>
+                <option value="Other">Something else</option>
+              </select>
             </div>
           </div>
           <div class="form-group">
-            <label for="cf-phone">Phone <span style="opacity:0.4;font-size:9px;letter-spacing:0">(optional)</span></label>
-            <input type="tel" id="cf-phone" name="phone" placeholder="+44 7700 000000" />
-          </div>
-          <div class="form-group">
             <label for="cf-message">Message</label>
-            <textarea id="cf-message" name="message" placeholder="How can I help?" required></textarea>
+            <textarea id="cf-message" name="message" placeholder="How can I help?" required aria-required="true"></textarea>
+            <p class="form-hint">Please do not include detailed or urgent medical information in this form.</p>
           </div>
           <button type="submit" class="form-submit" id="formSubmit">Send message</button>
-          <p class="form-status" id="formStatus"></p>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          <p class="form-privacy" id="formPrivacy">Your information will be used to respond to your enquiry and, where appropriate, arrange your appointment. Please see our <a href="/privacy">Privacy Notice</a> for more information.</p>
         </form>
       </div>
 
@@ -1611,8 +1596,9 @@
   <!-- FOOTER -->
   <footer>
     <span class="footer-name">Olesya Pavlova Facial Aesthetics</span>
-    <span class="footer-note">GDC-Registered Dentist &nbsp;·&nbsp; Send, Woking, Surrey</span>
+    <span class="footer-note">GDC-registered dentist · <a href="https://olr.gdc-uk.org/searchregister" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">GDC No. 156643</a> &nbsp;·&nbsp; Send, Woking, Surrey</span>
     <div class="footer-links">
+      <a class="footer-review" href="/privacy" style="color:var(--stone);">Privacy Notice</a>
       <a class="footer-review" href="https://g.page/r/CSufsCu-pjd9EBM/review" target="_blank" rel="noopener">★ Leave a Google review</a>
       <a class="footer-social" href="https://www.facebook.com/olesyapavlovaaesthetics" target="_blank" rel="noopener" aria-label="Follow Olesya Pavlova Facial Aesthetics on Facebook">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.26h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
@@ -1625,7 +1611,7 @@
 
   <!-- STICKY MOBILE CTA -->
   <div class="mobile-cta">
-    <a class="mc-book" href="#contact">Book consultation</a>
+    <a class="mc-book" href="/consultation/book">Book consultation</a>
     <a class="mc-wa" href="https://wa.me/447557884658" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
       WhatsApp
@@ -1672,10 +1658,11 @@
         name:    document.getElementById('cf-name').value.trim(),
         email:   document.getElementById('cf-email').value.trim(),
         phone:   document.getElementById('cf-phone').value.trim(),
+        reason:  document.getElementById('cf-reason').value,
         message: document.getElementById('cf-message').value.trim(),
       };
-      if (!data.name || !data.email || !data.message) {
-        status.textContent = 'Please fill in your name, email and message.';
+      if (!data.name || !data.email || !data.reason || !data.message) {
+        status.textContent = 'Please fill in your name, email, reason for enquiry and message.';
         status.className = 'form-status error';
         return;
       }

@@ -9,6 +9,13 @@
        homepage; reachable only from the consultation page. -->
   <meta name="robots" content="noindex, nofollow" />
   <meta name="googlebot" content="noindex, nofollow" />
+  <!-- ============================================================
+       TODO(owner): This page discusses a prescription-only medicine.
+       It MUST be submitted to the ASA's free Copy Advice service (and
+       reviewed by the indemnifier) BEFORE it is published in production.
+       Keep it gated behind the consultation journey, noindex, and out of
+       the sitemap until that review is complete.
+       ============================================================ -->
 
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
@@ -25,12 +32,12 @@
   <nav>
     <a href="/" class="nav-brand">Olesya <span>Pavlova</span></a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="/#treatments">Treatments</a></li>
-      <li><a href="/#why">Why a dentist</a></li>
+      <li><a href="/#treatments">Facial Aesthetics</a></li>
+      <li><a href="/about">About Olesya</a></li>
       <li><a href="/consultation" class="active">Consultation</a></li>
-      <li><a href="/#about">About</a></li>
-      <li><a href="/#faq">FAQs</a></li>
-      <li><a href="/#contact" class="nav-cta">Book a consultation</a></li>
+      <li><a href="/about#dentistry">Dentistry</a></li>
+      <li><a href="/#contact">Contact</a></li>
+      <li><a href="/consultation/book" class="nav-cta">Book a consultation</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -111,7 +118,8 @@
   <!-- FOOTER -->
   <footer>
     <span class="footer-name">Olesya Pavlova Facial Aesthetics</span>
-    <span class="footer-note">GDC-Registered Dentist &nbsp;·&nbsp; Send, Woking, Surrey</span>
+    <span class="footer-note">GDC-registered dentist · <a href="https://olr.gdc-uk.org/searchregister" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">GDC No. 156643</a> &nbsp;·&nbsp; Send, Woking, Surrey</span>
+    <span class="footer-note"><a href="/privacy" style="color:inherit;text-decoration:underline;">Privacy Notice</a></span>
   </footer>
 
   <script>
