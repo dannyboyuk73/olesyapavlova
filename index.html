@@ -82,7 +82,7 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "Why choose a dentist for facial aesthetics?", "acceptedAnswer": { "@type": "Answer", "text": "Over 20 years of clinical experience as a dentist brings extensive knowledge of facial anatomy, careful patient assessment and precision injection techniques. Together with the clinical governance and aftercare standards of a GDC-registered healthcare professional, that means your care is planned and delivered with medical judgement — not just a short course." } },
+      { "@type": "Question", "name": "Why choose a dentist for facial aesthetics?", "acceptedAnswer": { "@type": "Answer", "text": "Olesya's approach is grounded in more than 20 years of clinical dentistry, detailed knowledge of facial anatomy and careful patient assessment. Together with the clinical governance and aftercare standards of a GDC-registered healthcare professional, that means your care is planned and delivered with medical judgement." } },
       { "@type": "Question", "name": "Do I need a consultation first?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Everything begins with a consultation to understand your goals, assess your suitability and medical history, and agree a personalised plan. A consultation may not always result in treatment — some concerns are better suited to other options, and Olesya will tell you honestly." } },
       { "@type": "Question", "name": "Do you offer dermal fillers in Woking?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Dermal filler treatments — including lip filler, cheek filler, tear troughs, and facial balancing — are available at the Send clinic, a short drive from Woking and Guildford." } },
       { "@type": "Question", "name": "How natural will the results look?", "acceptedAnswer": { "@type": "Answer", "text": "The aim is always subtle, natural-looking enhancement — refreshed, never overdone. Treatments are tailored to your features and agreed with you at consultation." } },
@@ -1194,17 +1194,15 @@
     }
 
     /* ── HERO LOAD ANIMATIONS ──
-       Gated behind .js so hero text is instantly visible without JS. */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
+       Essential hero content (photo, H1, intro, buttons) is visible immediately.
+       Only a subtle upward movement is animated — opacity is never reduced, so
+       nothing fades in or reads as blank on load. */
+    @keyframes heroRise {
+      from { transform: translateY(10px); }
+      to   { transform: translateY(0); }
     }
-    .js .hero-name-block { animation: fadeUp 1s ease both; }
-    .js .hero-right > * { animation: fadeUp 0.9s ease both; }
-    .js .hero-right > *:nth-child(1) { animation-delay: 0.15s; }
-    .js .hero-right > *:nth-child(2) { animation-delay: 0.3s; }
-    .js .hero-right > *:nth-child(3) { animation-delay: 0.45s; }
-    .js .hero-right > *:nth-child(4) { animation-delay: 0.6s; }
+    .js .hero-name-block { animation: heroRise 0.6s ease both; }
+    .js .hero-right > * { animation: heroRise 0.6s ease both; }
 
     /* Respect reduced-motion: show everything immediately, no movement. */
     @media (prefers-reduced-motion: reduce) {
@@ -1278,7 +1276,7 @@
     <div class="section-inner">
       <span class="section-label fade-up">Why a dentist</span>
       <h2 class="section-heading fade-up">Why choose a dentist<br/>for facial aesthetics?</h2>
-      <p class="why-lead fade-up">Your face deserves medical judgement, not just a short course. Olesya brings over 20 years of clinical experience as a dentist, with extensive knowledge of facial anatomy, careful patient assessment and precision injection techniques, to <em>every</em> treatment.</p>
+      <p class="why-lead fade-up">Olesya's approach is grounded in more than 20 years of clinical dentistry, detailed knowledge of facial anatomy, careful patient assessment and precision injection techniques — brought to <em>every</em> treatment.</p>
 
       <div class="why-pillars">
         <div class="why-pillar fade-up">
@@ -1447,7 +1445,7 @@
       <div class="faq-list fade-up">
         <details class="faq-item">
           <summary>Why choose a dentist for facial aesthetics?</summary>
-          <div class="faq-answer">Over 20 years of clinical experience as a dentist brings extensive knowledge of facial anatomy, careful patient assessment and precision injection techniques. Together with the clinical governance and aftercare standards of a GDC-registered healthcare professional, that means your care is planned and delivered with medical judgement — not just a short course.</div>
+          <div class="faq-answer">Olesya's approach is grounded in more than 20 years of clinical dentistry, detailed knowledge of facial anatomy and careful patient assessment. Together with the clinical governance and aftercare standards of a GDC-registered healthcare professional, that means your care is planned and delivered with medical judgement.</div>
         </details>
         <details class="faq-item">
           <summary>Do I need a consultation first?</summary>
@@ -1552,10 +1550,9 @@
               <label for="cf-reason">Reason for enquiry</label>
               <select id="cf-reason" name="reason" required aria-required="true">
                 <option value="" selected disabled>Please choose…</option>
-                <option value="Aesthetics">Facial aesthetics</option>
                 <option value="Dentistry">Dentistry</option>
                 <option value="Careers">Careers &amp; recruitment</option>
-                <option value="Other">Something else</option>
+                <option value="Other">General enquiry</option>
               </select>
             </div>
           </div>
