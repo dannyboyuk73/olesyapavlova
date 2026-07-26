@@ -21,6 +21,24 @@ if (IS_STAGING) {
   });
 }
 
+// Keep the factual treatment-information page out of search engines
+// (defence in depth alongside its meta robots tag). It is intentionally
+// reachable only via the consultation page, never linked from the homepage.
+app.use((req, res, next) => {
+  if (req.path.startsWith('/treatment-information')) {
+    res.set('X-Robots-Tag', 'noindex, nofollow');
+  }
+  next();
+});
+
+// Clean URLs for the interior pages
+app.get('/consultation', (req, res) => {
+  res.sendFile(path.join(__dirname, 'consultation.html'));
+});
+app.get('/treatment-information', (req, res) => {
+  res.sendFile(path.join(__dirname, 'treatment-information.html'));
+});
+
 app.use(express.static(path.join(__dirname)));
 
 app.post('/api/contact', async (req, res) => {

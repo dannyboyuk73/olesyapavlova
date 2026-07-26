@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /treatment-information
+Disallow: /treatment-information.html
 
 Sitemap: https://olesyapavlova.co.uk/sitemap.xml
