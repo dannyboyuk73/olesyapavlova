@@ -7,6 +7,15 @@ const app = express();
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 app.use(express.json());
+// Accept plain HTML form posts too — the booking form's no-JS fallback
+// (method="post" action="/api/contact") submits urlencoded, not JSON.
+app.use(express.urlencoded({ extended: false }));
+
+// Never leak the enquiry page's URL (or anything else) to third parties in full.
+app.use((req, res, next) => {
+  res.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  next();
+});
 
 // Sandpit/staging only: keep the preview site out of search engines.
 // Enabled by setting STAGING=true on the staging Railway service; the live
@@ -54,6 +63,18 @@ const esc = (s) => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
+// The JS path sends JSON and expects JSON back; the no-JS fallback is a plain
+// urlencoded form post that needs a human-readable HTML answer. Detect by
+// content type: a browser form post is never application/json.
+const wantsHtml = (req) => !req.is('json');
+const htmlReply = (res, status, title, body) => res.status(status).type('html').send(
+  `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">` +
+  `<meta name="robots" content="noindex"><title>${title} — Olesya Pavlova</title><link rel="stylesheet" href="/styles.css"></head>` +
+  `<body style="display:flex;min-height:100vh;align-items:center;justify-content:center;background:#f7f4ef">` +
+  `<main style="max-width:34rem;padding:2rem;text-align:center"><h1 style="margin-bottom:1rem">${title}</h1>` +
+  `<p style="margin-bottom:1.5rem">${body}</p><p><a href="/">Return to the homepage</a></p></main></body></html>`
+);
+
 app.post('/api/contact', async (req, res) => {
   const {
     name, email, phone, reason, message,
@@ -61,6 +82,7 @@ app.post('/api/contact', async (req, res) => {
   } = req.body || {};
 
   if (!name || !email) {
+    if (wantsHtml(req)) return htmlReply(res, 400, 'Something was missing', 'A name and email address are required. Please go back and try again.');
     return res.status(400).json({ error: 'Name and email are required.' });
   }
 
@@ -83,8 +105,11 @@ app.post('/api/contact', async (req, res) => {
 
   // Non-delivering test mode: log instead of sending, so implementation and
   // staging never message Olesya for real.
+  const thanks = 'Thank you. Your enquiry has been received. Olesya will contact you to discuss your consultation and available appointment times. Submitting an enquiry does not confirm an appointment.';
+
   if (CONTACT_TEST_MODE) {
     console.log(`[contact][TEST MODE — not sent] ${category} from ${name} <${email}>`);
+    if (wantsHtml(req)) return htmlReply(res, 200, 'Enquiry received', thanks);
     return res.json({ ok: true, test: true });
   }
 
@@ -96,9 +121,11 @@ app.post('/api/contact', async (req, res) => {
       subject: `[${category}] Website enquiry from ${name}`,
       html,
     });
+    if (wantsHtml(req)) return htmlReply(res, 200, 'Enquiry received', thanks);
     res.json({ ok: true });
   } catch (err) {
     console.error('Resend error:', err);
+    if (wantsHtml(req)) return htmlReply(res, 500, 'Something went wrong', 'Your message could not be sent. Please try again, or contact Olesya directly.');
     res.status(500).json({ error: 'Failed to send message. Please try again.' });
   }
 });

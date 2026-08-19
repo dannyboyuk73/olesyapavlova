@@ -90,7 +90,12 @@
           <span class="section-label">Request a consultation</span>
           <h2 class="section-heading" style="margin-bottom:22px;">Aesthetics enquiry</h2>
 
-          <form id="bookForm" novalidate aria-describedby="bookPrivacy">
+          <!-- method/action are the no-JS fallback: without them a failed script
+               leaves the browser default (GET to current URL), which would put
+               name/email/phone/concern in the query string, browser history and
+               server logs. JS still intercepts and fetches; this only fixes the
+               degraded path. -->
+          <form id="bookForm" method="post" action="/api/contact" novalidate aria-describedby="bookPrivacy">
             <div class="form-row">
               <div class="form-group">
                 <label for="bk-name">Name</label>
