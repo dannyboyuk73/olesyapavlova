@@ -141,6 +141,7 @@
         <a href="/consultation/book" class="btn btn-gold">Book an aesthetics consultation</a>
         <a href="https://wa.me/447557884658" target="_blank" rel="noopener" class="btn btn-ghost" style="color:var(--cream);border-color:var(--stone);">Ask Olesya on WhatsApp</a>
       </div>
+      <p style="margin-top:22px;font-size:13px;"><a href="https://g.page/r/CSufsCu-pjd9EBM/review" target="_blank" rel="noopener" style="color:var(--stone);text-decoration:underline;">Already been treated? ★ Leave a Google review</a></p>
     </div>
   </section>
 
@@ -158,7 +159,13 @@
       const isOpen = navLinks.classList.toggle('open');
       toggle.classList.toggle('open', isOpen);
       toggle.setAttribute('aria-expanded', isOpen);
+      document.body.classList.toggle('menu-open', isOpen);
     });
   </script>
+  <div class="mobile-cta" role="navigation" aria-label="Quick actions">
+    <a href="/prices">Prices</a>
+    <a href="https://wa.me/447557884658" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="/consultation/book" class="cta-book">Book</a>
+  </div>
 </body>
 </html>

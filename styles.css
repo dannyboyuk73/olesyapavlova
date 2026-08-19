@@ -503,3 +503,24 @@ select:focus-visible, textarea:focus-visible, summary:focus-visible {
 /* Two-column layout for booking (details + form) */
 .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
 @media (max-width: 860px) { .split-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+/* ── Sticky mobile CTA bar (WP12.1) ─────────────────────────────── */
+.mobile-cta { display: none; }
+@media (max-width: 700px) {
+  .mobile-cta {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
+    display: flex;
+    background: var(--deep);
+    border-top: 1px solid rgba(184,151,90,0.35);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .mobile-cta a {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    min-height: 48px; font-size: 13px; font-weight: 500; letter-spacing: 0.06em;
+    color: var(--cream); text-decoration: none;
+  }
+  .mobile-cta a + a { border-left: 1px solid rgba(196,184,164,0.16); }
+  .mobile-cta .cta-book { background: var(--gold); color: var(--ink); }
+  body { padding-bottom: calc(48px + env(safe-area-inset-bottom)); }
+  body.menu-open .mobile-cta { display: none; }
+}

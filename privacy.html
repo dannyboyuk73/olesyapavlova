@@ -110,7 +110,13 @@
       const isOpen = navLinks.classList.toggle('open');
       toggle.classList.toggle('open', isOpen);
       toggle.setAttribute('aria-expanded', isOpen);
+      document.body.classList.toggle('menu-open', isOpen);
     });
   </script>
+  <div class="mobile-cta" role="navigation" aria-label="Quick actions">
+    <a href="/prices">Prices</a>
+    <a href="https://wa.me/447557884658" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="/consultation/book" class="cta-book">Book</a>
+  </div>
 </body>
 </html>
