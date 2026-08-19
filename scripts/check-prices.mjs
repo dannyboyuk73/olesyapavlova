@@ -17,8 +17,8 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const data = JSON.parse(readFileSync(join(root, 'data', 'prices.json'), 'utf8'));
 const EXCLUDE = new Set(['treatment-information.html']);
-// Pages that must carry every confirmed treatment price (extend when /prices ships)
-const MUST_CARRY = ['index.html'];
+// Pages that must carry every confirmed treatment price
+const MUST_CARRY = ['index.html', 'prices.html'];
 
 let failures = [];
 

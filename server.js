@@ -48,13 +48,15 @@ app.use((req, res, next) => {
 // Clean URLs for pages
 const page = (file) => (req, res) => res.sendFile(path.join(__dirname, file));
 app.get('/about', page('about.html'));
+app.get('/prices', page('prices.html'));
 app.get('/consultation', page('consultation.html'));
 app.get('/consultation/book', page('consultation-book.html'));
 app.get('/treatment-information', page('treatment-information.html'));
 app.get('/privacy', page('privacy.html'));
 app.get('/dermal-fillers-woking', page('dermal-fillers-woking.html'));
 app.get('/lip-filler-surrey', page('lip-filler-surrey.html'));
-app.get('/facial-aesthetics-consultation', page('facial-aesthetics-consultation.html'));
+// Duplicate of /consultation (WP5.5) — permanent redirect, kept out of sitemap.
+app.get('/facial-aesthetics-consultation', (req, res) => res.redirect(301, '/consultation'));
 
 app.use(express.static(path.join(__dirname)));
 
