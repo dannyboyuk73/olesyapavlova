@@ -1,0 +1,23 @@
+{
+  "updated": "2026-08-19",
+  "currency": "GBP",
+  "consultation": {
+    "fee": 50,
+    "redeemable": true,
+    "copy": "£50, redeemed in full against your treatment"
+  },
+  "note": "Prices are a guide. Your treatment plan and final cost are confirmed at your consultation.",
+  "treatments": [
+    { "id": "lip-05",      "name": "Lip filler",              "price": null, "volume": "0.5 ml", "group": "lips",      "todo": "new tier - price TBC, see Appendix A" },
+    { "id": "lip-10",      "name": "Lip filler",              "price": 310,  "volume": "1 ml",   "group": "lips"      },
+    { "id": "cheek-10",    "name": "Cheek filler",            "price": 295,  "volume": "1 ml",   "group": "volume"    },
+    { "id": "cheek-20",    "name": "Cheek filler",            "price": null, "volume": "2 ml",   "group": "volume",    "todo": "new tier - price TBC" },
+    { "id": "nasolabial",  "name": "Nasolabial folds",        "price": 295,  "volume": "1 ml",   "group": "volume"    },
+    { "id": "marionette",  "name": "Marionette lines",        "price": 295,  "volume": "1 ml",   "group": "volume"    },
+    { "id": "tear-trough", "name": "Tear troughs",            "price": 350,  "volume": "1 ml",   "group": "volume"    },
+    { "id": "chin",        "name": "Chin filler",             "price": 295,  "volume": "1 ml",   "group": "balancing" },
+    { "id": "jawline",     "name": "Jawline filler",          "price": null, "volume": "{{VOLUME}}", "group": "balancing", "todo": "BLOCKING - confirm 1ml vs 2-3ml with Olesya, see brief 1.1" },
+    { "id": "rhinoplasty", "name": "Non-surgical rhinoplasty","price": 380,  "volume": null,     "group": "balancing" },
+    { "id": "dissolve",    "name": "Filler dissolving",       "price": null, "volume": "1 ml",   "group": "other",     "todo": "new line - price TBC, band £150-250" }
+  ]
+}

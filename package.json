@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "check": "node scripts/check-prices.mjs"
   },
   "name": "olesyapavlova",
   "version": "1.0.0",
