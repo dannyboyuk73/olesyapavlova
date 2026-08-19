@@ -45,7 +45,14 @@
     "telephone": "+447557884658",
     "email": "hello@olesyapavlova.co.uk",
     "image": "https://olesyapavlova.co.uk/olesya.jpg",
-    "priceRange": "££",
+    "priceRange": "£295 - £380",
+    "makesOffer": {
+      "@type": "Offer",
+      "name": "Facial aesthetics consultation",
+      "description": "£50, redeemed in full against your treatment",
+      "price": "50",
+      "priceCurrency": "GBP"
+    },
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Send Therapy Rooms, 175 Send Road, Send",
@@ -558,6 +565,24 @@
       font-size: 13.5px;
       white-space: nowrap;
       flex-shrink: 0;
+    }
+    .treat-name { min-width: 0; }
+    .treat-vol {
+      font-size: 11.5px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--mist);
+      white-space: nowrap;
+    }
+    @media (max-width: 600px) {
+      .treat-vol { display: block; }
+    }
+    .treat-incl {
+      margin-top: 14px;
+      font-size: 11.5px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--mist);
     }
     .treat-note {
       margin-top: 16px;
@@ -1268,6 +1293,7 @@
       <div class="trust-strip-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>20+ Years Clinical Experience</div>
       <div class="trust-strip-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Knowledge of Facial Anatomy</div>
       <div class="trust-strip-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Clinic in Send, Woking</div>
+      <div class="trust-strip-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Consultation £50, Redeemable</div>
     </div>
   </div>
 
@@ -1318,11 +1344,12 @@
           <div class="treat-goal-title">Restore volume &amp; smooth folds</div>
           <p class="treat-goal-desc">Replace volume lost with age and soften deeper folds for a naturally refreshed, lifted result.</p>
           <ul class="treat-list">
-            <li data-tip="Restores lost volume or enhances cheekbone definition for a lifted, sculpted look.">Cheek filler<span class="treat-price">£295</span></li>
-            <li data-tip="Softens the lines running from the sides of the nose down to the corners of the mouth.">Nasolabial folds<span class="treat-price">£295</span></li>
-            <li data-tip="Fills the downward creases from the corners of the mouth that can give a sad or stern expression.">Marionette lines<span class="treat-price">£295</span></li>
-            <li data-tip="Reduces the hollows and dark shadows beneath the eyes for a fresher, less tired appearance.">Tear troughs<span class="treat-price">£400</span></li>
+            <li data-tip="Restores lost volume or enhances cheekbone definition for a lifted, sculpted look."><span class="treat-name">Cheek filler <span class="treat-vol">(1 ml)</span></span><span class="treat-price">£295</span></li>
+            <li data-tip="Softens the lines running from the sides of the nose down to the corners of the mouth."><span class="treat-name">Nasolabial folds <span class="treat-vol">(1 ml)</span></span><span class="treat-price">£295</span></li>
+            <li data-tip="Fills the downward creases from the corners of the mouth that can give a sad or stern expression."><span class="treat-name">Marionette lines <span class="treat-vol">(1 ml)</span></span><span class="treat-price">£295</span></li>
+            <li data-tip="Reduces the hollows and dark shadows beneath the eyes for a fresher, less tired appearance."><span class="treat-name">Tear troughs <span class="treat-vol">(1 ml)</span></span><span class="treat-price">£350</span></li>
           </ul>
+          <p class="treat-incl">All prices include the volume shown. If more than one area is treated in a session, the plan and total are agreed and confirmed with you before anything begins.</p>
         </div>
 
         <div class="treat-card fade-up">
@@ -1330,8 +1357,9 @@
           <div class="treat-goal-title">Lip filler</div>
           <p class="treat-goal-desc">Subtle enhancement of shape, border and balance — natural, considered volume tailored to your features.</p>
           <ul class="treat-list">
-            <li data-tip="Adds natural-looking fullness and definition to the lips, tailored to your desired shape.">Lip filler<span class="treat-price">£310</span></li>
+            <li data-tip="Adds natural-looking fullness and definition to the lips, tailored to your desired shape."><span class="treat-name">Lip filler <span class="treat-vol">(1 ml)</span></span><span class="treat-price">£310</span></li>
           </ul>
+          <p class="treat-incl">All prices include the volume shown. If more than one area is treated in a session, the plan and total are agreed and confirmed with you before anything begins.</p>
         </div>
 
         <div class="treat-card fade-up">
@@ -1339,10 +1367,13 @@
           <div class="treat-goal-title">Facial balancing with filler</div>
           <p class="treat-goal-desc">Define and harmonise features — jaw, chin and profile — with dermal filler, for subtle overall balance.</p>
           <ul class="treat-list">
-            <li data-tip="Defines and sharpens the jawline using filler for a more structured, contoured profile.">Jawline filler<span class="treat-price">£320</span></li>
-            <li data-tip="Adds projection and balance to the chin to improve overall facial harmony and proportion.">Chin filler<span class="treat-price">£295</span></li>
-            <li data-tip="Reshapes and refines the nose without surgery using precise filler placement to smooth bumps or lift the tip.">Non-surgical rhinoplasty<span class="treat-price">£450</span></li>
+            <li data-tip="Adds projection and balance to the chin to improve overall facial harmony and proportion."><span class="treat-name">Chin filler <span class="treat-vol">(1 ml)</span></span><span class="treat-price">£295</span></li>
+            <!-- TODO(volume): jawline price withheld until Olesya confirms the volume
+                 the price includes (1 ml vs full 2–3 ml treatment) — see brief §1.1. -->
+            <li data-tip="Defines and sharpens the jawline using filler for a more structured, contoured profile."><span class="treat-name">Jawline filler</span><span class="treat-price">priced at consultation</span></li>
+            <li data-tip="Reshapes and refines the nose without surgery using precise filler placement to smooth bumps or lift the tip."><span class="treat-name">Non-surgical rhinoplasty</span><span class="treat-price">£380</span></li>
           </ul>
+          <p class="treat-incl">All prices include the volume shown. If more than one area is treated in a session, the plan and total are agreed and confirmed with you before anything begins.</p>
         </div>
 
         <div class="treat-card fade-up">
@@ -1361,7 +1392,7 @@
       </div>
 
       <div class="treat-foot fade-up">
-        <p class="treat-foot-note">Prices are a guide — dermal filler treatment plans and final costs are confirmed at your consultation. Some concerns are best discussed in person, and not every enquiry results in treatment.</p>
+        <p class="treat-foot-note">The consultation is £50, redeemed in full against your treatment. Prices are a guide — dermal filler treatment plans and final costs are confirmed at your consultation. Some concerns are best discussed in person, and not every enquiry results in treatment.</p>
       </div>
     </div>
   </section>

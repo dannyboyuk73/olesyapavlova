@@ -42,8 +42,8 @@ const siteConfig = {
   // Do NOT surface these as visible placeholders. Until each is confirmed, the
   // booking page shows only the truthful general wording noted alongside.
   booking: {
-    // TODO(owner): Confirm consultation fee (free or £amount).
-    consultationFee: null,
+    // Confirmed 2026-08 (brief §1.2): £50, redeemed in full against treatment.
+    consultationFee: 50,
     // TODO(owner): Confirm consultation duration (e.g. 30 minutes).
     consultationDuration: null,
     // TODO(owner): Confirm exact Sunday clinic hours.
