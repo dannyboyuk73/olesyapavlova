@@ -1252,6 +1252,27 @@
       .fade-up, .js .fade-up { opacity: 1 !important; transform: none !important; }
       .hero-name-block, .hero-right > * { animation: none !important; }
     }
+
+    /* ── Sticky mobile CTA bar (WP12.1) — keep in sync with styles.css ── */
+    .mobile-cta { display: none; }
+    @media (max-width: 700px) {
+      .mobile-cta {
+        position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
+        display: flex;
+        background: var(--deep);
+        border-top: 1px solid rgba(184,151,90,0.35);
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      .mobile-cta a {
+        flex: 1; display: flex; align-items: center; justify-content: center;
+        min-height: 48px; font-size: 13px; font-weight: 500; letter-spacing: 0.06em;
+        color: var(--cream); text-decoration: none;
+      }
+      .mobile-cta a + a { border-left: 1px solid rgba(196,184,164,0.16); }
+      .mobile-cta .cta-book { background: var(--gold); color: var(--ink); }
+      body { padding-bottom: calc(48px + env(safe-area-inset-bottom)); }
+      body.menu-open .mobile-cta { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -1389,6 +1410,7 @@
             <li data-tip="Reshapes and refines the nose without surgery using precise filler placement to smooth bumps or lift the tip."><span class="treat-name">Non-surgical rhinoplasty</span><span class="treat-price">£380</span></li>
           </ul>
           <p class="treat-incl">All prices include the volume shown. If more than one area is treated in a session, the plan and total are agreed and confirmed with you before anything begins.</p>
+          <a href="/facial-balancing-surrey" class="treat-more">Read more about facial balancing →</a>
         </div>
 
         <!-- WP7: compliant wrinkle-relaxing explainer. Copy pending approval by
@@ -1677,6 +1699,7 @@
       const isOpen = navLinks.classList.toggle('open');
       toggle.classList.toggle('open', isOpen);
       toggle.setAttribute('aria-expanded', isOpen);
+      document.body.classList.toggle('menu-open', isOpen);
     });
 
     navLinks.querySelectorAll('a').forEach(a => {
@@ -1745,5 +1768,10 @@
   <!-- Cloudflare Web Analytics -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "cc5760a921784628be9ae7ed93ededb3"}'></script>
   <!-- End Cloudflare Web Analytics -->
+  <div class="mobile-cta" role="navigation" aria-label="Quick actions">
+    <a href="/prices">Prices</a>
+    <a href="https://wa.me/447557884658" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="/consultation/book" class="cta-book">Book</a>
+  </div>
 </body>
 </html>

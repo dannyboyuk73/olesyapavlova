@@ -55,6 +55,12 @@ app.get('/treatment-information', page('treatment-information.html'));
 app.get('/privacy', page('privacy.html'));
 app.get('/dermal-fillers-woking', page('dermal-fillers-woking.html'));
 app.get('/lip-filler-surrey', page('lip-filler-surrey.html'));
+app.get('/facial-balancing-surrey', page('facial-balancing-surrey.html'));
+app.get('/tear-trough-filler-surrey', page('tear-trough-filler-surrey.html'));
+app.get('/non-surgical-rhinoplasty-surrey', page('non-surgical-rhinoplasty-surrey.html'));
+app.get('/why-a-dentist', page('why-a-dentist.html'));
+// WP10: gallery scaffold — noindexed and unlinked until consented images land.
+app.get('/results', page('results.html'));
 // Duplicate of /consultation (WP5.5) — permanent redirect, kept out of sitemap.
 app.get('/facial-aesthetics-consultation', (req, res) => res.redirect(301, '/consultation'));
 
