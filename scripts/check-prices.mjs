@@ -44,10 +44,12 @@ for (const f of htmlFiles) {
 }
 
 // 3. Every confirmed price must appear on the pages that should carry it.
-for (const page of MUST_CARRY) {
-  const src = readFileSync(join(root, page), 'utf8');
-  for (const t of data.treatments) {
-    if (t.price === null) continue;
+//    A treatment may override with its own `pages` list (e.g. dissolving is a
+//    corrective service listed on /prices + the dermal page, not the homepage).
+for (const t of data.treatments) {
+  if (t.price === null) continue;
+  for (const page of (t.pages ?? MUST_CARRY)) {
+    const src = readFileSync(join(root, page), 'utf8');
     if (!new RegExp(`£\\s?${t.price}\\b`).test(src)) failures.push(`MISSING: ${page} does not show £${t.price} ("${t.name}" ${t.volume ?? ''})`.trim());
   }
 }
