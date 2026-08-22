@@ -56,8 +56,9 @@ const siteConfig = {
     deposit: null,
     // TODO(owner): Confirm cancellation and rescheduling policy.
     cancellationPolicy: null,
-    // TODO(owner): Confirm whether an appointment-booking platform will be integrated.
-    bookingPlatformUrl: null,
+    // Square Appointments (enabled 2026-08-22): free plan, manual accept,
+    // Sundays only, no online prepayment; fee taken at appointment.
+    bookingPlatformUrl: 'https://app.squareup.com/appointments/book/o3joiyfyw9skmx/LM64V7427KB3R/start',
   },
 };
 
