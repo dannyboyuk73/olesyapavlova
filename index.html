@@ -513,6 +513,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
+      align-items: start; /* cards size to their content — no stretched empty boxes */
     }
     .treat-card {
       background: var(--white);
@@ -1422,10 +1423,7 @@
           <div class="treat-goal-title">Concerned about lines?</div>
           <p class="treat-goal-desc">Wrinkle-relaxing injections are a prescription treatment. That means the law doesn't allow clinics to advertise them by name or publish a price — and any clinic doing so is breaking the rules.</p>
           <p class="treat-goal-desc">What it does mean: Olesya will assess your face, review your medical history, and discuss whether a prescription treatment is appropriate for you. If it is, she'll explain exactly what's involved and what it costs, before you commit to anything.</p>
-          <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:auto;">
-            <a href="/consultation/book" class="btn btn-ghost" style="align-self:flex-start;">Book a consultation</a>
-            <a href="https://wa.me/447557884658" target="_blank" rel="noopener" class="treat-more" style="align-self:center;margin-top:0;">Ask Olesya on WhatsApp →</a>
-          </div>
+          <a href="/consultation/book" class="treat-more">Discuss at a consultation →</a>
         </div>
 
         <div class="treat-card treat-cta fade-up">
