@@ -503,6 +503,7 @@ select:focus-visible, textarea:focus-visible, summary:focus-visible {
 /* Two-column layout for booking (details + form) */
 .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
 @media (max-width: 860px) { .split-grid { grid-template-columns: 1fr; gap: 40px; } }
+.about-photo { width: 100%; max-width: 440px; height: auto; border-radius: 2px; display: block; }
 
 /* ── Sticky mobile CTA bar (WP12.1) ─────────────────────────────── */
 .mobile-cta { display: none; }
